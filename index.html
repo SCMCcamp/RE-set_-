@@ -3,332 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>RE:Set 留言墙 | 便利贴+评论+私信</title>
+    <title>RE:Set 留言墙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: #f0ebe1;
-            background-image: radial-gradient(#d4c9b8 1px, transparent 1px);
-            background-size: 30px 30px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            padding: 16px; 
-            min-height: 100vh;
+        :root {
+            --green: #547443;
+            --green-dark: #3d5c30;
+            --green-light: #e8f0e5;
+            --green-mid: #d4e0cd;
+            --tan: #f0ebe1;
+            --tan-dark: #e8dcc8;
+            --tan-mid: #d4c9b8;
+            --paper: #fdf8ed;
+            --sticky: #fffaec;
+            --text: #3d3522;
+            --text-mid: #5c4b2e;
+            --text-muted: #8b7a66;
+            --text-faint: #aa9f89;
+            --white: #fff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.09);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.13);
+            --radius-sm: 16px;
+            --radius-md: 22px;
+            --radius-lg: 28px;
+            --radius-pill: 60px;
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
         }
-        .app { max-width: 1400px; margin: 0 auto; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            background: var(--tan);
+            background-image: radial-gradient(var(--tan-mid) 1px, transparent 1px);
+            background-size: 28px 28px;
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            padding: 12px 12px calc(12px + var(--safe-bottom));
+            color: var(--text);
+        }
+        .app { max-width: 900px; margin: 0 auto; }
+
+        /* ── Header ─────────────────────────── */
         .logo-card {
-            background: white;
-            border-radius: 28px;
-            padding: 12px 20px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 10px 16px;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow-sm);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
         }
-        .logo-area { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .logo-icon { background: #547443; width: 48px; height: 48px; border-radius: 25px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; }
-        .logo-text h1 { color: #547443; font-size: 1.4rem; }
-        .logo-text p { color: #8b7a66; font-size: 0.7rem; }
-        
-        .user-menu { position: relative; cursor: pointer; }
-        .user-badge {
-            background: #e8f0e5;
-            padding: 8px 16px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            color: #547443;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .user-badge:hover { background: #d4e0cd; }
-        .user-dropdown {
-            position: absolute;
-            top: 50px;
-            right: 0;
-            background: white;
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-icon {
+            background: var(--green);
+            width: 42px; height: 42px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-width: 180px;
-            z-index: 100;
-            overflow: hidden;
-            display: none;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 1.3rem;
+            flex-shrink: 0;
         }
-        .user-dropdown.show { display: block; animation: fadeIn 0.2s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .dropdown-item { padding: 12px 16px; font-size: 0.85rem; cursor: pointer; border-bottom: 1px solid #edf2f7; }
-        .dropdown-item:hover { background: #f8fafc; }
-        
-        .tab-nav { display: flex; gap: 12px; margin-bottom: 24px; background: transparent; border-radius: 60px; padding: 0; }
-        .tab-btn { flex: 1; padding: 14px 20px; border: none; background: white; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; color: #8b7a66; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-        .tab-btn.active { background: #547443; color: white; box-shadow: 0 4px 12px rgba(84,116,67,0.3); }
+        .logo-text h1 { color: var(--green); font-size: 1.1rem; font-weight: 700; }
+        .logo-text p { color: var(--text-muted); font-size: 0.65rem; }
+
+        .user-menu { position: relative; }
+        .user-badge {
+            background: var(--green-light);
+            padding: 7px 14px;
+            border-radius: 40px;
+            font-size: 0.82rem;
+            color: var(--green);
+            font-weight: 600;
+            display: flex; align-items: center; gap: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+            max-width: 160px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .user-badge:active { background: var(--green-mid); }
+        .user-dropdown {
+            position: absolute; top: 46px; right: 0;
+            background: white; border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 170px; z-index: 200; overflow: hidden; display: none;
+        }
+        .user-dropdown.show { display: block; animation: fadeDown 0.15s ease; }
+        @keyframes fadeDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+        .dropdown-item { padding: 13px 16px; font-size: 0.85rem; cursor: pointer; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-item:last-child { border-bottom: none; }
+        .dropdown-item:active { background: #f8fafc; }
+
+        /* ── Nickname card ──────────────────── */
+        .nickname-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow-sm);
+        }
+        .nickname-group { display: flex; gap: 8px; align-items: center; }
+        .nickname-group input {
+            flex: 1; padding: 11px 16px;
+            border: 1.5px solid #e2e8f0; border-radius: 40px;
+            font-size: 0.9rem; font-family: inherit;
+            background: #fafafa; min-width: 0;
+        }
+        .nickname-group input:focus { outline: none; border-color: var(--green); background: white; }
+        .nickname-group input:disabled { background: #f1f5f9; color: #475569; }
+        .nickname-group button {
+            background: var(--green); padding: 11px 18px;
+            border: none; border-radius: 40px;
+            color: white; font-weight: 600; font-size: 0.88rem;
+            cursor: pointer; white-space: nowrap; flex-shrink: 0;
+        }
+        .nickname-group button:active { background: var(--green-dark); }
+        .nickname-group button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .admin-actions {
+            margin-top: 12px; padding-top: 12px;
+            border-top: 1px solid #edf2f7;
+            display: none; gap: 8px; flex-wrap: wrap;
+        }
+        .admin-actions button {
+            background: #d97706; border: none;
+            padding: 8px 14px; border-radius: 40px;
+            color: white; font-weight: 500; font-size: 0.8rem;
+            cursor: pointer;
+        }
+        .admin-actions button:active { background: #b85e00; }
+        .admin-actions .exit-admin { background: #64748b; }
+        #adminBadge { display:none; font-size:0.7rem; color:#d97706; margin-top:6px; }
+
+        /* ── Tabs ──────────────────────────── */
+        .tab-nav {
+            display: flex; gap: 8px; margin-bottom: 14px;
+        }
+        .tab-btn {
+            flex: 1; padding: 13px 10px;
+            border: none; background: var(--white);
+            border-radius: var(--radius-pill); font-size: 0.9rem;
+            font-weight: 600; cursor: pointer; color: var(--text-muted);
+            box-shadow: var(--shadow-sm); font-family: inherit;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        .tab-btn.active {
+            background: var(--green); color: white;
+            box-shadow: 0 4px 14px rgba(84,116,67,0.3);
+        }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        
-        .nickname-card {
-            background: white;
-            border-radius: 24px;
-            padding: 16px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .nickname-group { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-        .nickname-group input { flex: 1; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 40px; background: white; font-size: 0.9rem; }
-        .nickname-group input:focus { outline: none; border-color: #547443; }
-        .nickname-group input:disabled { background: #f1f5f9; color: #475569; }
-        .nickname-group button { background: #547443; padding: 10px 20px; border: none; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .nickname-group button:hover { background: #3d5c30; }
-        .nickname-group button:disabled { opacity: 0.5; cursor: not-allowed; }
-        
-        .admin-actions { margin-top: 15px; padding-top: 15px; border-top: 1px solid #edf2f7; display: none; gap: 10px; flex-wrap: wrap; }
-        .admin-actions button { background: #d97706; border: none; padding: 8px 16px; border-radius: 40px; color: white; font-weight: 500; cursor: pointer; transition: 0.2s; }
-        .admin-actions button:hover { background: #b85e00; }
-        .admin-actions .exit-admin { background: #64748b; }
-        
+
+        /* ── Whiteboard ─────────────────────── */
         .whiteboard {
-            background: #fdf8ed;
-            border-radius: 32px;
-            padding: 24px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border: 1px solid #e8dcc8;
+            background: var(--paper);
+            border-radius: var(--radius-lg);
+            padding: 18px 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--tan-dark);
         }
-        .whiteboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px dashed #d4c5a8; }
-        .whiteboard-header h2 { color: #5c4b2e; font-size: 1.4rem; display: flex; align-items: center; gap: 8px; }
-        .sticky-input { background: #fffef7; border-radius: 20px; padding: 15px; margin-bottom: 25px; border: 1px solid #e8e0d0; }
-        .sticky-input textarea { width: 100%; padding: 14px; border: 1.5px solid #e0d5c0; border-radius: 20px; font-size: 1rem; font-family: inherit; background: white; resize: vertical; }
-        .sticky-input textarea:focus { outline: none; border-color: #547443; }
+        .whiteboard-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 14px; padding-bottom: 10px;
+            border-bottom: 2px dashed var(--tan-mid);
+        }
+        .whiteboard-header h2 { color: var(--text-mid); font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
+        .sticky-input {
+            background: #fffef7; border-radius: var(--radius-md);
+            padding: 12px; margin-bottom: 18px;
+            border: 1px solid #e8e0d0;
+        }
+        .sticky-input textarea {
+            width: 100%; padding: 12px;
+            border: 1.5px solid #e0d5c0; border-radius: var(--radius-sm);
+            font-size: 0.95rem; font-family: inherit;
+            background: white; resize: vertical; min-height: 80px;
+            line-height: 1.5;
+        }
+        .sticky-input textarea:focus { outline: none; border-color: var(--green); }
         .sticky-input button {
-            margin-top: 12px;
-            background: #547443;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 60px;
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.2s;
+            margin-top: 10px; background: var(--green);
+            border: none; padding: 13px 24px; border-radius: var(--radius-pill);
+            color: white; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; width: 100%; font-family: inherit;
         }
-        .sticky-input button:hover { background: #3d5c30; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(84,116,67,0.3); }
-        
-        .sticky-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-height: 600px;
-            overflow-y: auto;
-            padding: 5px;
-        }
+        .sticky-input button:active { background: var(--green-dark); }
+
+        .sticky-grid { display: flex; flex-direction: column; gap: 16px; }
         .sticky-note {
-            background: #fffaec;
-            padding: 16px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
-            border-left: 6px solid #547443;
-            display: flex;
-            flex-direction: column;
+            background: var(--sticky); padding: 14px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+            border-left: 5px solid var(--green);
         }
-        .sticky-note:hover { transform: translateY(-3px); }
-        .sticky-note:nth-child(odd) { rotate: -0.5deg; }
-        .sticky-note:nth-child(even) { rotate: 0.8deg; }
-        .sticky-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .sticky-author { background: #e8e0d0; padding: 4px 12px; border-radius: 30px; font-size: 0.75rem; font-weight: 600; color: #547443; }
-        .sticky-time { font-size: 0.65rem; color: #aa9f89; }
-        .sticky-content { font-size: 0.9rem; line-height: 1.45; color: #3d3522; word-break: break-word; margin-bottom: 8px; }
-        .sticky-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-        .delete-sticky { background: none; border: none; color: #c9b696; font-size: 0.7rem; cursor: pointer; padding: 4px 10px; border-radius: 20px; }
-        .delete-sticky:hover { background: #fee2e2; color: #dc2626; }
+        .sticky-note:nth-child(odd) { transform: rotate(-0.4deg); }
+        .sticky-note:nth-child(even) { transform: rotate(0.5deg); }
+        .sticky-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .sticky-author { background: #e8e0d0; padding: 3px 10px; border-radius: 30px; font-size: 0.72rem; font-weight: 700; color: var(--green); }
+        .sticky-time { font-size: 0.62rem; color: var(--text-faint); }
+        .sticky-content { font-size: 0.9rem; line-height: 1.5; color: var(--text); word-break: break-word; margin-bottom: 10px; }
+        .sticky-footer { display: flex; justify-content: space-between; align-items: center; }
+        .delete-sticky {
+            background: none; border: none; color: #c9b696;
+            font-size: 0.72rem; cursor: pointer; padding: 5px 10px; border-radius: 20px;
+        }
+        .delete-sticky:active { background: #fee2e2; color: #dc2626; }
         .reply-toggle {
-            background: none;
-            border: none;
-            color: #547443;
-            font-size: 0.7rem;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            background: none; border: none; color: var(--green);
+            font-size: 0.72rem; cursor: pointer; padding: 5px 8px;
+            border-radius: 20px; display: inline-flex; align-items: center; gap: 4px;
         }
-        .reply-toggle:hover { background: #e8f0e5; }
-        .replies-section {
-            margin-top: 12px;
-            padding-top: 8px;
-            border-top: 1px dashed #e0d5c0;
-        }
-        .reply-item {
-            font-size: 0.75rem;
-            padding: 6px 0;
-            border-bottom: 1px solid #f0e6d0;
-            color: #4a3f2c;
-        }
-        .reply-author { font-weight: 600; color: #547443; margin-right: 8px; }
-        .reply-time { font-size: 0.6rem; color: #aa9f89; float: right; }
+        .reply-toggle:active { background: var(--green-light); }
+        .replies-section { margin-top: 10px; padding-top: 8px; border-top: 1px dashed #e0d5c0; }
+        .reply-item { font-size: 0.75rem; padding: 6px 0; border-bottom: 1px solid #f0e6d0; color: #4a3f2c; }
+        .reply-author { font-weight: 700; color: var(--green); margin-right: 6px; }
+        .reply-time { font-size: 0.6rem; color: var(--text-faint); float: right; }
         .reply-content { word-break: break-word; margin-top: 2px; }
-        .reply-input-area {
-            margin-top: 8px;
-            display: none;
-            gap: 8px;
-            align-items: center;
+        .reply-input-area { margin-top: 8px; display: none; gap: 8px; align-items: center; }
+        .reply-input-area input { flex: 1; padding: 8px 12px; border-radius: 30px; border: 1px solid #e0d5c0; font-size: 0.8rem; font-family: inherit; }
+        .reply-input-area button { background: var(--green); border: none; color: white; padding: 8px 14px; border-radius: 30px; font-size: 0.75rem; cursor: pointer; font-family: inherit; white-space: nowrap; }
+        .pagination-container { text-align: center; margin-top: 16px; padding: 8px; }
+        .load-more-btn { background: #e8e0d0; color: var(--text-mid); border: none; padding: 10px 24px; border-radius: 40px; font-size: 0.82rem; cursor: pointer; font-family: inherit; }
+        .load-more-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .empty-sticky { text-align: center; color: var(--text-muted); padding: 40px; font-size: 0.9rem; }
+
+        /* ── Private messages ───────────────── */
+        .private-layout {
+            display: flex; gap: 14px;
+            min-height: 580px;
         }
-        .reply-input-area input {
-            flex: 1;
-            padding: 6px 10px;
-            border-radius: 30px;
-            border: 1px solid #e0d5c0;
-            font-size: 0.75rem;
+        /* Mobile: stacked */
+        @media (max-width: 650px) {
+            .private-layout { flex-direction: column; min-height: unset; }
+            .contact-list { width: 100% !important; max-height: 240px; }
+            .chat-area { min-height: 460px; }
         }
-        .reply-input-area button {
-            background: #547443;
-            border: none;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            cursor: pointer;
+        .contact-list {
+            width: 260px; flex-shrink: 0;
+            background: white; border-radius: var(--radius-lg);
+            overflow: hidden; box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column;
         }
-        .pagination-container { text-align: center; margin-top: 20px; padding: 10px; }
-        .load-more-btn { background: #e8e0d0; color: #5c4b2e; border: none; padding: 8px 20px; border-radius: 40px; font-size: 0.8rem; cursor: pointer; transition: 0.2s; }
-        .load-more-btn:hover { background: #d4c5a8; }
-        
-        .private-layout { display: flex; gap: 20px; min-height: 600px; flex-wrap: wrap; }
-        .contact-list { width: 280px; background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-        .contact-header { background: #547443; color: white; padding: 18px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
-        .new-chat-btn { background: rgba(255,255,255,0.25); border: none; color: white; padding: 8px 16px; border-radius: 40px; cursor: pointer; font-size: 0.8rem; }
-        .contact-items { flex: 1; overflow-y: auto; max-height: 520px; }
+        .contact-header {
+            background: var(--green); color: white;
+            padding: 14px 16px; font-weight: 700; font-size: 0.9rem;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-shrink: 0;
+        }
+        .new-chat-btn {
+            background: rgba(255,255,255,0.22); border: none;
+            color: white; padding: 7px 14px; border-radius: 40px;
+            cursor: pointer; font-size: 0.78rem; font-family: inherit;
+            white-space: nowrap;
+        }
+        .contact-items { flex: 1; overflow-y: auto; }
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
-            border-bottom: 1px solid #edf2f7;
-            cursor: pointer;
-            transition: 0.15s;
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 14px; border-bottom: 1px solid #edf2f7;
+            cursor: pointer; transition: background 0.12s;
         }
-        .contact-item:hover { background: #f8fafc; }
-        .contact-item.active { background: #e8f0e5; border-left: 4px solid #547443; }
-        .contact-avatar { width: 44px; height: 44px; background: #e8e0d0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #547443; font-size: 1.1rem; }
-        .contact-info { flex: 1; }
-        .contact-name { font-weight: 600; color: #1e293b; }
-        .contact-preview { font-size: 0.7rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px; }
-        .contact-badge { background: #54744320; padding: 2px 8px; border-radius: 30px; font-size: 0.6rem; color: #547443; }
-        .empty-contact { text-align: center; color: #94a3b8; padding: 40px; font-style: italic; }
-        
-        .chat-area { flex: 1; background: white; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .chat-header { background: #f8fafc; padding: 16px 20px; border-bottom: 1px solid #edf2f7; display: flex; align-items: center; gap: 12px; justify-content: space-between; }
-        .chat-header .avatar { width: 40px; height: 40px; background: #e8e0d0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #547443; }
-        .chat-header h3 { color: #1e293b; flex: 1; }
-        .delete-user-btn { background: #ef4444; border: none; color: white; padding: 6px 14px; border-radius: 40px; font-size: 0.7rem; cursor: pointer; }
-        .delete-user-btn:hover { background: #dc2626; }
-        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #f9fafc; min-height: 400px; max-height: 450px; }
-        .chat-bubble { display: flex; flex-direction: column; max-width: 80%; }
+        .contact-item:active { background: #f8fafc; }
+        .contact-item.active { background: var(--green-light); border-left: 3px solid var(--green); }
+        .contact-avatar {
+            width: 40px; height: 40px; background: #e8e0d0;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-weight: 700; color: var(--green);
+            font-size: 1rem; flex-shrink: 0;
+        }
+        .contact-info { flex: 1; min-width: 0; }
+        .contact-name { font-weight: 600; color: #1e293b; font-size: 0.88rem; }
+        .contact-preview { font-size: 0.68rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .contact-badge { background: rgba(84,116,67,0.12); padding: 2px 7px; border-radius: 30px; font-size: 0.6rem; color: var(--green); flex-shrink: 0; }
+        .empty-contact { text-align: center; color: #94a3b8; padding: 30px 16px; font-size: 0.85rem; line-height: 1.6; }
+
+        .chat-area {
+            flex: 1; background: white; border-radius: var(--radius-lg);
+            overflow: hidden; display: flex; flex-direction: column;
+            box-shadow: var(--shadow-sm); min-width: 0;
+        }
+        .chat-header {
+            background: #f8fafc; padding: 14px 16px;
+            border-bottom: 1px solid #edf2f7;
+            display: flex; align-items: center; gap: 10px;
+            flex-shrink: 0;
+        }
+        .chat-header .avatar {
+            width: 38px; height: 38px; background: #e8e0d0;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-weight: 700; color: var(--green);
+            flex-shrink: 0;
+        }
+        .chat-header h3 { color: #1e293b; flex: 1; font-size: 0.95rem; }
+        .delete-user-btn {
+            background: #ef4444; border: none; color: white;
+            padding: 6px 12px; border-radius: 40px; font-size: 0.7rem;
+            cursor: pointer; flex-shrink: 0; font-family: inherit;
+        }
+        .chat-messages {
+            flex: 1; padding: 16px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 10px;
+            background: #f9fafc;
+        }
+        .empty-chat { text-align: center; color: #94a3b8; padding: 40px 20px; font-size: 0.88rem; line-height: 1.6; }
+        .chat-bubble { display: flex; flex-direction: column; max-width: 82%; }
         .bubble-sent { align-self: flex-end; }
         .bubble-received { align-self: flex-start; }
-        .bubble-content { padding: 10px 16px; border-radius: 22px; font-size: 0.9rem; line-height: 1.4; word-break: break-word; }
-        .bubble-sent .bubble-content { background: #547443; color: white; border-bottom-right-radius: 6px; }
-        .bubble-received .bubble-content { background: white; color: #1e293b; border: 1px solid #e2e8f0; border-bottom-left-radius: 6px; }
-        .bubble-info { font-size: 0.6rem; color: #94a3b8; margin: 4px 12px 0; display: flex; gap: 10px; justify-content: flex-end; }
-        .chat-input-area { padding: 16px; background: white; border-top: 1px solid #edf2f7; display: flex; gap: 10px; }
-        .chat-input-area input { flex: 1; padding: 12px; border: 1.5px solid #e2e8f0; border-radius: 40px; font-size: 0.9rem; }
-        .chat-input-area input:focus { outline: none; border-color: #547443; }
-        .chat-input-area button { background: #547443; border: none; color: white; padding: 0 24px; border-radius: 40px; font-weight: 600; cursor: pointer; }
-        .empty-chat { text-align: center; color: #94a3b8; padding: 60px; font-style: italic; }
-        
+        .bubble-content {
+            padding: 10px 15px; border-radius: 20px;
+            font-size: 0.88rem; line-height: 1.45; word-break: break-word;
+        }
+        .bubble-sent .bubble-content { background: var(--green); color: white; border-bottom-right-radius: 5px; }
+        .bubble-received .bubble-content { background: white; color: #1e293b; border: 1px solid #e2e8f0; border-bottom-left-radius: 5px; }
+        .bubble-anon .bubble-content { background: #e0e7ff; color: #3730a3; border-bottom-right-radius: 5px; }
+        .bubble-info { font-size: 0.6rem; color: #94a3b8; margin: 3px 10px 0; display: flex; gap: 8px; align-items: center; }
+        .bubble-sent .bubble-info { justify-content: flex-end; }
+        .bubble-received .bubble-info { justify-content: flex-start; }
+        .anon-tag { background: #c7d2fe; color: #3730a3; padding: 1px 6px; border-radius: 20px; font-size: 0.6rem; font-weight: 600; }
+
+        /* Chat input with anonymous toggle */
+        .chat-input-area {
+            padding: 12px 14px; background: white;
+            border-top: 1px solid #edf2f7;
+            display: flex; flex-direction: column; gap: 8px;
+            flex-shrink: 0;
+        }
+        .chat-input-row { display: flex; gap: 8px; align-items: center; }
+        .chat-input-area input {
+            flex: 1; padding: 11px 14px;
+            border: 1.5px solid #e2e8f0; border-radius: 40px;
+            font-size: 0.9rem; font-family: inherit; min-width: 0;
+        }
+        .chat-input-area input:focus { outline: none; border-color: var(--green); }
+        .send-btn {
+            background: var(--green); border: none; color: white;
+            padding: 11px 20px; border-radius: 40px;
+            font-weight: 600; cursor: pointer; font-family: inherit;
+            white-space: nowrap; flex-shrink: 0;
+        }
+        .send-btn:active { background: var(--green-dark); }
+        .anon-toggle-row { display: flex; align-items: center; gap: 8px; }
+        .anon-toggle {
+            appearance: none; -webkit-appearance: none;
+            width: 38px; height: 20px; background: #cbd5e1;
+            border-radius: 20px; cursor: pointer; position: relative;
+            transition: background 0.2s; flex-shrink: 0;
+        }
+        .anon-toggle:checked { background: #818cf8; }
+        .anon-toggle::after {
+            content: ''; position: absolute; top: 2px; left: 2px;
+            width: 16px; height: 16px; background: white;
+            border-radius: 50%; transition: left 0.2s;
+        }
+        .anon-toggle:checked::after { left: 20px; }
+        .anon-label { font-size: 0.75rem; color: #64748b; cursor: pointer; user-select: none; }
+        .anon-label strong { color: #3730a3; }
+
+        /* ── Modals ─────────────────────────── */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.55); backdrop-filter: blur(3px);
+            z-index: 1000; display: flex; align-items: center; justify-content: center;
+            padding: 20px;
         }
         .modal-container {
-            background: white;
-            border-radius: 32px;
-            padding: 24px;
-            width: 380px;
-            max-width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.3);
-            animation: modalFadeIn 0.2s ease;
+            background: white; border-radius: var(--radius-lg);
+            padding: 22px; width: 100%; max-width: 380px;
+            max-height: 80vh; overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            animation: modalIn 0.18s ease;
         }
-        @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .modal-container h3 { font-size: 1.3rem; color: #1e293b; margin-bottom: 16px; text-align: center; }
-        .modal-container p { margin-bottom: 20px; text-align: center; line-height: 1.4; }
-        .modal-search { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 40px; font-size: 0.9rem; margin-bottom: 16px; }
-        .user-list-modal { max-height: 350px; overflow-y: auto; }
-        .user-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 8px; border-bottom: 1px solid #edf2f7; }
-        .user-select-btn { background: #547443; border: none; color: white; padding: 6px 16px; border-radius: 30px; font-size: 0.75rem; cursor: pointer; }
-        .modal-buttons { display: flex; gap: 12px; margin-top: 16px; }
-        .modal-buttons button { flex: 1; padding: 10px; border-radius: 40px; font-weight: 600; cursor: pointer; border: none; }
+        @keyframes modalIn { from { opacity:0; transform:scale(0.94); } to { opacity:1; transform:scale(1); } }
+        .modal-container h3 { font-size: 1.2rem; color: #1e293b; margin-bottom: 14px; text-align: center; }
+        .modal-container p { margin-bottom: 16px; text-align: center; line-height: 1.5; }
+        .modal-search {
+            width: 100%; padding: 10px 14px;
+            border: 1.5px solid #e2e8f0; border-radius: 40px;
+            font-size: 0.9rem; font-family: inherit; margin-bottom: 14px;
+        }
+        .modal-search:focus { outline: none; border-color: var(--green); }
+        .user-list-modal { max-height: 300px; overflow-y: auto; }
+        .user-item { display: flex; justify-content: space-between; align-items: center; padding: 11px 6px; border-bottom: 1px solid #edf2f7; font-size: 0.88rem; }
+        .user-select-btn { background: var(--green); border: none; color: white; padding: 7px 16px; border-radius: 30px; font-size: 0.75rem; cursor: pointer; font-family: inherit; }
+        .user-delete-btn { background: #ef4444; border: none; color: white; padding: 7px 14px; border-radius: 30px; font-size: 0.75rem; cursor: pointer; font-family: inherit; }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 14px; }
+        .modal-buttons button {
+            flex: 1; padding: 11px; border-radius: 40px;
+            font-weight: 600; cursor: pointer; border: none;
+            font-family: inherit; font-size: 0.9rem;
+        }
+        .modal-buttons button:first-child { background: var(--green); color: white; }
         .modal-buttons button:last-child { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
-        
-        footer { text-align: center; margin-top: 24px; font-size: 0.7rem; color: #8b7a66; }
-        
-        @media (max-width: 700px) {
-            .private-layout { flex-direction: column; }
-            .contact-list { width: 100%; max-height: 300px; }
-            .tab-btn { font-size: 0.9rem; padding: 12px 16px; }
+
+        footer { text-align: center; margin-top: 20px; font-size: 0.68rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* Delete button inline in chat */
+        .del-msg-btn {
+            background: none; border: none; color: #cbd5e1;
+            cursor: pointer; font-size: 0.65rem; padding: 0;
         }
+        .del-msg-btn:active { color: #ef4444; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <div class="app">
+
+    <!-- Header -->
     <div class="logo-card">
-        <div class="logo-area"><div class="logo-icon">R</div><div class="logo-text"><h1>RE:Set 留言墙</h1><p>便利贴白板 · 评论 · 私信聊天室</p></div></div>
-        <div class="user-menu" id="userMenu"><div class="user-badge" id="currentUserBadge">👤 未设置昵称 ▼</div><div class="user-dropdown" id="userDropdown"><div class="dropdown-item" id="adminLoginBtn">🔐 管理员登录</div></div></div>
+        <div class="logo-area">
+            <div class="logo-icon">R</div>
+            <div class="logo-text">
+                <h1>RE:Set 留言墙</h1>
+                <p>便利贴 · 评论 · 私信</p>
+            </div>
+        </div>
+        <div class="user-menu" id="userMenu">
+            <div class="user-badge" id="currentUserBadge">👤 未设置 ▼</div>
+            <div class="user-dropdown" id="userDropdown">
+                <div class="dropdown-item" id="adminLoginBtn">🔐 管理员登录</div>
+            </div>
+        </div>
     </div>
+
+    <!-- Nickname -->
     <div class="nickname-card">
-        <div class="nickname-group"><input type="text" id="nicknameInput" placeholder="输入你的昵称"><button id="setNameBtn">设置昵称</button></div>
-        <div id="adminActions" class="admin-actions"><button id="resetNameBtn">✏️ 修改任意昵称</button><button id="showUsersBtn">📋 用户列表</button><button id="exitAdminBtn" class="exit-admin">🚪 退出管理员</button></div>
-        <span id="adminBadge" style="display:none; font-size:0.7rem; color:#d97706; margin-left:10px;">👑 管理员模式</span>
+        <div class="nickname-group">
+            <input type="text" id="nicknameInput" placeholder="输入你的昵称">
+            <button id="setNameBtn">设置昵称</button>
+        </div>
+        <div id="adminActions" class="admin-actions">
+            <button id="resetNameBtn">✏️ 改名</button>
+            <button id="showUsersBtn">📋 用户列表</button>
+            <button id="exitAdminBtn" class="exit-admin">🚪 退出管理</button>
+        </div>
+        <div id="adminBadge">👑 管理员模式</div>
     </div>
-    <div class="tab-nav"><button class="tab-btn active" data-tab="tab1">📌 留言墙</button><button class="tab-btn" data-tab="tab2">💬 私信</button></div>
+
+    <!-- Tabs -->
+    <div class="tab-nav">
+        <button class="tab-btn active" data-tab="tab1">📌 留言墙</button>
+        <button class="tab-btn" data-tab="tab2">💬 私信</button>
+    </div>
+
+    <!-- Tab 1: Whiteboard -->
     <div id="tab1" class="tab-content active">
         <div class="whiteboard">
-            <div class="whiteboard-header"><h2><span>📌</span> 便利贴白板墙</h2><span style="font-size:12px; color:#aa9f89;">✨ 所有人可见 · 可评论</span></div>
-            <div class="sticky-input"><textarea id="publicContent" rows="3" placeholder="写张便利贴吧... 会贴在白板上 ✨"></textarea><button id="postPublicBtn">📝 贴上便利贴</button></div>
-            <div id="publicListContainer"><div class="sticky-grid" id="publicList">加载中...</div><div id="paginationControls" class="pagination-container"></div></div>
+            <div class="whiteboard-header">
+                <h2>📌 便利贴白板</h2>
+                <span style="font-size:11px; color:var(--text-faint);">所有人可见 · 可评论</span>
+            </div>
+            <div class="sticky-input">
+                <textarea id="publicContent" rows="3" placeholder="写张便利贴吧... ✨"></textarea>
+                <button id="postPublicBtn">📝 贴上便利贴</button>
+            </div>
+            <div id="publicList">加载中...</div>
+            <div id="paginationControls" class="pagination-container"></div>
         </div>
     </div>
+
+    <!-- Tab 2: Private messages -->
     <div id="tab2" class="tab-content">
         <div class="private-layout">
-            <div class="contact-list"><div class="contact-header"><span>📋 联系人</span><button class="new-chat-btn" id="newChatBtn">+ 新聊天</button></div><div class="contact-items" id="contactList">加载中...</div></div>
-            <div class="chat-area"><div class="chat-header" id="chatHeader" style="display:none;"><div class="avatar" id="chatAvatar">?</div><h3 id="chatWithName">选择联系人</h3><button id="deleteUserBtn" class="delete-user-btn" style="display:none;">🗑️ 删除用户</button></div>
-            <div class="chat-messages" id="chatMessages"><div class="empty-chat">💬 留下你想对TA说的悄悄话吧～</div></div>
-            <div class="chat-input-area" id="chatInputArea" style="display:none;"><input type="text" id="chatMessageInput" placeholder="输入消息..."><button id="sendChatBtn">发送</button></div></div>
+            <div class="contact-list">
+                <div class="contact-header">
+                    <span>📋 联系人</span>
+                    <button class="new-chat-btn" id="newChatBtn">+ 新聊天</button>
+                </div>
+                <div class="contact-items" id="contactList">
+                    <div class="empty-contact">请先设置昵称</div>
+                </div>
+            </div>
+            <div class="chat-area">
+                <div class="chat-header" id="chatHeader" style="display:none;">
+                    <div class="avatar" id="chatAvatar">?</div>
+                    <h3 id="chatWithName">选择联系人</h3>
+                    <button id="deleteUserBtn" class="delete-user-btn" style="display:none;">🗑️ 删除用户</button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="empty-chat">💬 留下你想对TA说的悄悄话吧～</div>
+                </div>
+                <div class="chat-input-area" id="chatInputArea" style="display:none;">
+                    <div class="anon-toggle-row">
+                        <input type="checkbox" id="anonToggle" class="anon-toggle">
+                        <label for="anonToggle" class="anon-label">匿名发送 — 对方只看到 <strong>「匿名」</strong></label>
+                    </div>
+                    <div class="chat-input-row">
+                        <input type="text" id="chatMessageInput" placeholder="输入消息...">
+                        <button class="send-btn" id="sendChatBtn">发送</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- 模态框区域 -->
-    <div id="searchUserModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><h3>🔍 发起私信</h3><input type="text" id="searchUserInput" class="modal-search" placeholder="输入昵称搜索..."><div id="searchResults" class="user-list-modal">加载中...</div><div class="modal-buttons"><button id="closeSearchModal">关闭</button></div></div></div></div>
-    <div id="successModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><p id="successMessage" style="margin-bottom:20px;"></p><div class="modal-buttons"><button id="closeSuccessModal">确定</button></div></div></div></div>
-    <div id="confirmModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><p id="confirmMessage" style="margin-bottom:20px;"></p><div class="modal-buttons"><button id="confirmYes">确定</button><button id="confirmNo">取消</button></div></div></div></div>
-    <div id="userListModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><h3>📋 所有用户</h3><input type="text" id="searchUserListInput" class="modal-search" placeholder="🔍 搜索用户..."><div id="allUsersList" class="user-list-modal">加载中...</div><div class="modal-buttons"><button id="closeUserListBtn">关闭</button></div></div></div></div>
-    <div id="adminLoginModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><h3>🔐 管理员登录</h3><input type="password" id="adminPasswordInput" class="modal-search" placeholder="请输入管理员密码"><div class="modal-buttons"><button id="confirmAdminLogin">登录</button><button id="cancelAdminLogin">取消</button></div></div></div></div>
+
+    <!-- Modals -->
+    <div id="searchUserModal" style="display:none;"><div class="modal-overlay"><div class="modal-container">
+        <h3>🔍 发起私信</h3>
+        <input type="text" id="searchUserInput" class="modal-search" placeholder="输入昵称搜索...">
+        <div id="searchResults" class="user-list-modal"></div>
+        <div class="modal-buttons"><button id="closeSearchModal">关闭</button></div>
+    </div></div></div>
+
+    <div id="successModal" style="display:none;"><div class="modal-overlay"><div class="modal-container">
+        <p id="successMessage"></p>
+        <div class="modal-buttons"><button id="closeSuccessModal">确定</button></div>
+    </div></div></div>
+
+    <div id="confirmModal" style="display:none;"><div class="modal-overlay"><div class="modal-container">
+        <p id="confirmMessage"></p>
+        <div class="modal-buttons">
+            <button id="confirmYes">确定</button>
+            <button id="confirmNo">取消</button>
+        </div>
+    </div></div></div>
+
+    <div id="userListModal" style="display:none;"><div class="modal-overlay"><div class="modal-container">
+        <h3>📋 所有用户</h3>
+        <input type="text" id="searchUserListInput" class="modal-search" placeholder="🔍 搜索用户...">
+        <div id="allUsersList" class="user-list-modal"></div>
+        <div class="modal-buttons"><button id="closeUserListBtn">关闭</button></div>
+    </div></div></div>
+
+    <div id="adminLoginModal" style="display:none;"><div class="modal-overlay"><div class="modal-container">
+        <h3>🔐 管理员登录</h3>
+        <input type="password" id="adminPasswordInput" class="modal-search" placeholder="请输入管理员密码">
+        <div class="modal-buttons">
+            <button id="confirmAdminLogin">登录</button>
+            <button id="cancelAdminLogin">取消</button>
+        </div>
+    </div></div></div>
+
     <footer>💾 数据互通 | 便利贴所有人可见并可评论 | 私信仅双方可见</footer>
 </div>
 
 <script>
-    // Supabase 配置
     const SUPABASE_URL = "https://chfanuzhklzzawbcazjp.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_7yvNBNHbSe-2cPbQ-yiXpA_z6dr1DYf";
     const ADMIN_PASSWORD = "reset2024";
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    
     let currentUser = "";
     let isAdmin = false;
     let currentContact = null;
@@ -336,483 +548,461 @@
     const PAGE_SIZE = 10;
     let totalMessages = 0;
     let isLoadingMore = false;
-    
-    // 模态框函数
-    function showMessageModal(message) {
-        const modal = document.getElementById('successModal');
-        const msgSpan = document.getElementById('successMessage');
-        msgSpan.innerText = message;
-        modal.style.display = 'flex';
-        const closeBtn = document.getElementById('closeSuccessModal');
-        closeBtn.onclick = () => modal.style.display = 'none';
-        const overlay = modal.querySelector('.modal-overlay');
-        if (overlay) overlay.onclick = (e) => { if (e.target === overlay) modal.style.display = 'none'; };
+
+    // ── Helpers ─────────────────────────────────────────────────────────────
+    function esc(s) { if (!s) return ''; return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+    function fmt(ts) { const d = new Date(+ts); return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; }
+
+    function showMsg(msg) {
+        const m = document.getElementById('successModal');
+        document.getElementById('successMessage').textContent = msg;
+        m.style.display = 'flex';
+        document.getElementById('closeSuccessModal').onclick = () => m.style.display = 'none';
+        m.querySelector('.modal-overlay').onclick = e => { if (e.target === m.querySelector('.modal-overlay')) m.style.display = 'none'; };
     }
-    
-    function showConfirm(message, onConfirm) {
-        const modal = document.getElementById('confirmModal');
-        const msgSpan = document.getElementById('confirmMessage');
-        msgSpan.innerText = message;
-        modal.style.display = 'flex';
-        const yesBtn = document.getElementById('confirmYes');
-        const noBtn = document.getElementById('confirmNo');
-        yesBtn.onclick = () => {
-            modal.style.display = 'none';
-            if (onConfirm) onConfirm();
-        };
-        noBtn.onclick = () => modal.style.display = 'none';
-        const overlay = modal.querySelector('.modal-overlay');
-        if (overlay) overlay.onclick = (e) => { if (e.target === overlay) modal.style.display = 'none'; };
+
+    function showConfirm(msg, cb) {
+        const m = document.getElementById('confirmModal');
+        document.getElementById('confirmMessage').textContent = msg;
+        m.style.display = 'flex';
+        document.getElementById('confirmYes').onclick = () => { m.style.display = 'none'; cb && cb(); };
+        document.getElementById('confirmNo').onclick = () => m.style.display = 'none';
+        m.querySelector('.modal-overlay').onclick = e => { if (e.target === m.querySelector('.modal-overlay')) m.style.display = 'none'; };
     }
-    
-    function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
-    function formatTime(ts) { let d = new Date(ts); return `${d.getMonth()+1}/${d.getDate()} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`; }
-    
-    // 获取所有用户
+
     async function getAllUsers() {
-        const { data, error } = await supabaseClient.from('users').select('username');
-        if (error) return [];
-        return data.map(u => u.username).filter(u => u !== currentUser);
+        const { data } = await sb.from('users').select('username');
+        return (data || []).map(u => u.username).filter(u => u !== currentUser);
     }
-    
-    // 便利贴分页加载
+
+    // ── Public / sticky notes ────────────────────────────────────────────────
     async function loadPublic(page = 1, append = false) {
         const from = (page - 1) * PAGE_SIZE;
-        const to = from + PAGE_SIZE - 1;
+        const to   = from + PAGE_SIZE - 1;
         try {
-            const { data: messages, error, count } = await supabaseClient
+            const { data: messages, error, count } = await sb
                 .from('public_messages')
                 .select('*', { count: 'exact' })
                 .order('timestamp', { ascending: false })
                 .range(from, to);
             if (error) throw error;
             totalMessages = count;
-            if (!append) document.getElementById('publicList').innerHTML = '';
+
+            const { data: allReplies } = await sb.from('public_message_replies').select('*');
+            const byMsg = {};
+            (allReplies || []).forEach(r => { (byMsg[r.message_id] = byMsg[r.message_id] || []).push(r); });
+
+            const container = document.getElementById('publicList');
+            if (!append) container.innerHTML = '';
+
             if (!messages.length && page === 1) {
-                document.getElementById('publicList').innerHTML = '<div class="empty-sticky">📌 还没有便利贴</div>';
+                container.innerHTML = '<div class="empty-sticky">📌 还没有便利贴，写第一张吧！</div>';
                 document.getElementById('paginationControls').innerHTML = '';
                 return;
             }
-            const { data: allReplies } = await supabaseClient.from('public_message_replies').select('*');
-            const repliesByMsgId = {};
-            allReplies?.forEach(r => { if (!repliesByMsgId[r.message_id]) repliesByMsgId[r.message_id] = []; repliesByMsgId[r.message_id].push(r); });
-            
-            const container = document.getElementById('publicList');
-            for (let msg of messages) {
-                const canDelete = (currentUser === msg.username) || isAdmin;
-                const replies = repliesByMsgId[msg.id] || [];
-                const replyHtml = replies.map(r => `
+
+            const frag = document.createDocumentFragment();
+            for (const msg of messages) {
+                const canDel = currentUser === msg.username || isAdmin;
+                const replies = byMsg[msg.id] || [];
+                const repliesHtml = replies.map(r => `
                     <div class="reply-item">
-                        <div><span class="reply-author">${escapeHtml(r.username)}</span><span class="reply-time">${formatTime(r.timestamp)}</span></div>
-                        <div class="reply-content">${escapeHtml(r.content)}</div>
-                        ${(currentUser === r.username || isAdmin) ? `<button class="delete-sticky" onclick="deleteReply('${r.id}', '${msg.id}')">删除</button>` : ''}
+                        <span class="reply-author">${esc(r.username)}</span>
+                        <span class="reply-time">${fmt(r.timestamp)}</span>
+                        <div class="reply-content">${esc(r.content)}</div>
+                        ${(currentUser === r.username || isAdmin) ? `<button class="delete-sticky" onclick="deleteReply('${r.id}')">删除</button>` : ''}
+                    </div>`).join('');
+
+                const div = document.createElement('div');
+                div.className = 'sticky-note';
+                div.dataset.id = msg.id;
+                div.innerHTML = `
+                    <div class="sticky-header">
+                        <span class="sticky-author">✏️ ${esc(msg.username)}</span>
+                        <span class="sticky-time">${fmt(msg.timestamp)}</span>
                     </div>
-                `).join('');
-                
-                container.innerHTML += `
-                    <div class="sticky-note" data-id="${msg.id}">
-                        <div class="sticky-header"><span class="sticky-author">✏️ ${escapeHtml(msg.username)}</span><span class="sticky-time">${formatTime(msg.timestamp)}</span></div>
-                        <div class="sticky-content">${escapeHtml(msg.content)}</div>
-                        <div class="sticky-footer">
-                            <button class="reply-toggle" onclick="toggleReplyInput(${msg.id})">💬 回复</button>
-                            ${canDelete ? `<button class="delete-sticky" onclick="deletePublic('${msg.id}')">🗑️ 撕掉</button>` : ''}
-                        </div>
-                        <div class="replies-section" id="replies-${msg.id}">
-                            <div class="replies-list">${replyHtml}</div>
-                            <div class="reply-input-area" id="reply-input-${msg.id}">
-                                <input type="text" id="reply-content-${msg.id}" placeholder="写评论...">
-                                <button onclick="submitReply(${msg.id})">发送</button>
-                            </div>
-                        </div>
+                    <div class="sticky-content">${esc(msg.content)}</div>
+                    <div class="sticky-footer">
+                        <button class="reply-toggle" onclick="toggleReply(${msg.id})">💬 回复</button>
+                        ${canDel ? `<button class="delete-sticky" onclick="deletePublic('${msg.id}')">🗑️ 撕掉</button>` : ''}
                     </div>
-                `;
+                    <div class="replies-section" id="replies-${msg.id}">
+                        <div class="replies-list">${repliesHtml}</div>
+                        <div class="reply-input-area" id="reply-input-${msg.id}">
+                            <input type="text" id="reply-content-${msg.id}" placeholder="写评论...">
+                            <button onclick="submitReply(${msg.id})">发送</button>
+                        </div>
+                    </div>`;
+                frag.appendChild(div);
             }
+            container.appendChild(frag);
+
             const pages = Math.ceil(totalMessages / PAGE_SIZE);
-            let paginationHtml = '';
-            if (pages > 1) {
-                paginationHtml = `<button class="load-more-btn" id="loadMoreBtn" ${page >= pages ? 'disabled style="opacity:0.5;"' : ''}>加载更多 (${page}/${pages})</button>`;
-            }
-            document.getElementById('paginationControls').innerHTML = paginationHtml;
-            const loadMoreBtn = document.getElementById('loadMoreBtn');
-            if (loadMoreBtn && page < pages) {
-                loadMoreBtn.onclick = () => {
+            const ctrl = document.getElementById('paginationControls');
+            if (pages > 1 && page < pages) {
+                ctrl.innerHTML = `<button class="load-more-btn" id="loadMoreBtn">加载更多 (${page}/${pages})</button>`;
+                document.getElementById('loadMoreBtn').onclick = () => {
                     if (isLoadingMore) return;
                     isLoadingMore = true;
-                    loadPublic(page + 1, true).finally(() => { isLoadingMore = false; });
+                    loadPublic(page + 1, true).finally(() => isLoadingMore = false);
                 };
+            } else {
+                ctrl.innerHTML = '';
             }
-        } catch(e) { console.error(e); showMessageModal('加载便利贴失败，请检查网络'); }
+        } catch (e) { console.error(e); showMsg('加载便利贴失败，请检查网络'); }
     }
-    
-    async function refreshPublic() { currentPage = 1; await loadPublic(1, false); }
-    
-    window.toggleReplyInput = (msgId) => {
-        const el = document.getElementById(`reply-input-${msgId}`);
+
+    async function refreshPublic() { await loadPublic(1, false); }
+
+    window.toggleReply = id => {
+        const el = document.getElementById(`reply-input-${id}`);
         if (el) el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
     };
-    
-    window.submitReply = async (msgId) => {
-        if (!currentUser) { showMessageModal('请先设置昵称'); return; }
-        const input = document.getElementById(`reply-content-${msgId}`);
-        const content = input.value.trim();
-        if (!content) { showMessageModal('请输入评论内容'); return; }
-        const { error } = await supabaseClient.from('public_message_replies').insert({
-            message_id: msgId,
-            username: currentUser,
-            content: content,
-            timestamp: Date.now()
-        });
-        if (error) { showMessageModal('评论失败: ' + error.message); return; }
+
+    window.submitReply = async id => {
+        if (!currentUser) { showMsg('请先设置昵称'); return; }
+        const input = document.getElementById(`reply-content-${id}`);
+        const content = (input.value || '').trim();
+        if (!content) { showMsg('请输入评论内容'); return; }
+        const { error } = await sb.from('public_message_replies').insert({ message_id: id, username: currentUser, content, timestamp: Date.now() });
+        if (error) { showMsg('评论失败: ' + error.message); return; }
         input.value = '';
         await refreshPublic();
-        showMessageModal('评论已发送');
     };
-    
-    window.deleteReply = async (replyId, msgId) => {
+
+    window.deleteReply = async id => {
         showConfirm('⚠️ 删除这条评论？', async () => {
-            const { error } = await supabaseClient.from('public_message_replies').delete().eq('id', replyId);
-            if (!error) {
-                await refreshPublic();
-                showMessageModal('评论已删除');
-            } else {
-                showMessageModal('删除失败');
-            }
+            const { error } = await sb.from('public_message_replies').delete().eq('id', id);
+            if (!error) await refreshPublic(); else showMsg('删除失败');
         });
     };
-    
-    window.deletePublic = async (id) => {
+
+    window.deletePublic = async id => {
         showConfirm('⚠️ 撕掉这张便利贴？', async () => {
-            const { error } = await supabaseClient.from('public_messages').delete().eq('id', id);
-            if (!error) {
-                await refreshPublic();
-                showMessageModal('便利贴已撕掉');
-            } else {
-                showMessageModal('删除失败，请稍后重试');
-            }
+            const { error } = await sb.from('public_messages').delete().eq('id', id);
+            if (!error) { await refreshPublic(); showMsg('便利贴已撕掉'); } else showMsg('删除失败');
         });
     };
-    
-    // 私信相关
+
+    async function postPublic() {
+        if (!currentUser) { showMsg('请先设置昵称'); return; }
+        const content = document.getElementById('publicContent').value.trim();
+        if (!content) { showMsg('请输入内容'); return; }
+        const { error } = await sb.from('public_messages').insert({ username: currentUser, content, timestamp: Date.now() });
+        if (!error) { document.getElementById('publicContent').value = ''; await refreshPublic(); showMsg('便利贴贴上啦！'); }
+        else showMsg('发布失败，请稍后重试');
+    }
+
+    // ── Private messages ─────────────────────────────────────────────────────
     async function loadContacts() {
         if (!currentUser) { document.getElementById('contactList').innerHTML = '<div class="empty-contact">请先设置昵称</div>'; return; }
-        const { data, error } = await supabaseClient.from('private_messages').select('fromUser,toUser').or(`fromUser.eq.${currentUser},toUser.eq.${currentUser}`);
+        const { data, error } = await sb.from('private_messages').select('fromUser,toUser,timestamp')
+            .or(`fromUser.eq.${currentUser},toUser.eq.${currentUser}`)
+            .order('timestamp', { ascending: false });
         if (error) return;
-        const contactSet = new Set();
-        data.forEach(m => {
-            if (m.fromUser === currentUser) contactSet.add(m.toUser);
-            if (m.toUser === currentUser) contactSet.add(m.fromUser);
-        });
-        const contacts = Array.from(contactSet);
+
+        // Deduplicate: keep only unique contacts, preserve order by most recent message
+        const seen = new Set();
+        const contacts = [];
+        for (const m of (data || [])) {
+            const other = m.fromUser === currentUser ? m.toUser : m.fromUser;
+            if (!seen.has(other)) { seen.add(other); contacts.push(other); }
+        }
+
         const container = document.getElementById('contactList');
-        if (!contacts.length) { container.innerHTML = '<div class="empty-contact">💬 暂无联系人<br>点击"+ 新聊天"开始对话</div>'; return; }
-        container.innerHTML = '';
-        for (let contact of contacts) {
-            const { data: msgs } = await supabaseClient
-                .from('private_messages')
-                .select('content')
-                .or(`and(fromUser.eq.${currentUser},toUser.eq.${contact}),and(fromUser.eq.${contact},toUser.eq.${currentUser})`)
-                .order('timestamp', { ascending: false })
-                .limit(1);
-            const lastMsg = msgs?.[0]?.content || '';
-            container.innerHTML += `<div class="contact-item" onclick="selectContact('${escapeHtml(contact)}')"><div class="contact-avatar">${escapeHtml(contact.charAt(0).toUpperCase())}</div><div class="contact-info"><div class="contact-name">${escapeHtml(contact)}</div><div class="contact-preview">${escapeHtml(lastMsg.slice(0,30))}</div></div><div class="contact-badge">📬</div></div>`;
+        if (!contacts.length) {
+            container.innerHTML = '<div class="empty-contact">💬 暂无联系人<br>点击"+ 新聊天"开始对话</div>';
+            return;
         }
-        if (currentContact) {
-            const active = document.querySelector(`.contact-item[onclick="selectContact('${currentContact}')"]`);
-            if (active) active.classList.add('active');
+
+        // Fetch last message per contact in one query
+        const { data: lastMsgs } = await sb.from('private_messages')
+            .select('fromUser,toUser,content,isAnon')
+            .or(`fromUser.eq.${currentUser},toUser.eq.${currentUser}`)
+            .order('timestamp', { ascending: false });
+
+        const lastByContact = {};
+        for (const m of (lastMsgs || [])) {
+            const other = m.fromUser === currentUser ? m.toUser : m.fromUser;
+            if (!lastByContact[other]) lastByContact[other] = m.content;
         }
+
+        container.innerHTML = contacts.map(contact => `
+            <div class="contact-item${currentContact === contact ? ' active' : ''}" onclick="selectContact('${esc(contact)}')">
+                <div class="contact-avatar">${esc(contact.charAt(0).toUpperCase())}</div>
+                <div class="contact-info">
+                    <div class="contact-name">${esc(contact)}</div>
+                    <div class="contact-preview">${esc((lastByContact[contact] || '').slice(0, 28))}</div>
+                </div>
+                <div class="contact-badge">📬</div>
+            </div>`).join('');
     }
-    
+
     async function getMessagesWith(user) {
-        const { data, error } = await supabaseClient
-            .from('private_messages')
-            .select('*')
+        const { data, error } = await sb.from('private_messages').select('*')
             .or(`and(fromUser.eq.${currentUser},toUser.eq.${user}),and(fromUser.eq.${user},toUser.eq.${currentUser})`)
             .order('timestamp', { ascending: true });
         if (error) return [];
         return data;
     }
-    
-    window.selectContact = async (contact) => {
+
+    window.selectContact = async contact => {
         if (!currentUser) return;
         currentContact = contact;
         const msgs = await getMessagesWith(contact);
         const container = document.getElementById('chatMessages');
-        if (!msgs.length) container.innerHTML = '<div class="empty-chat">💬 留下你想对TA说的悄悄话吧～</div>';
-        else {
+
+        if (!msgs.length) {
+            container.innerHTML = '<div class="empty-chat">💬 留下你想对TA说的悄悄话吧～</div>';
+        } else {
             container.innerHTML = msgs.map(m => {
                 const isSender = m.fromUser === currentUser;
-                const canDelete = isSender || isAdmin;
-                return `<div class="chat-bubble ${isSender ? 'bubble-sent' : 'bubble-received'}"><div class="bubble-content">${escapeHtml(m.content)}</div><div class="bubble-info"><span>${formatTime(m.timestamp)}</span>${canDelete ? `<button class="delete-private-msg" data-id="${m.id}" style="background:none; border:none; color:#94a3b8; cursor:pointer;">删除</button>` : ''}</div></div>`;
+                // If anonymous, receiver sees "匿名"; sender sees their own name + anon tag
+                const isAnon = !!m.isAnon;
+                let bubbleClass = 'chat-bubble';
+                let labelHtml = '';
+                let contentClass = 'bubble-content';
+                if (isSender) {
+                    bubbleClass += ' bubble-sent';
+                    if (isAnon) { bubbleClass += ' bubble-anon'; labelHtml = '<span class="anon-tag">匿名发出</span> '; }
+                } else {
+                    bubbleClass += ' bubble-received';
+                }
+                const canDel = isSender || isAdmin;
+                const displayName = (!isSender && isAnon) ? '匿名' : (isSender ? currentUser : m.fromUser);
+                return `<div class="${bubbleClass}">
+                    <div class="${contentClass}">${esc(m.content)}</div>
+                    <div class="bubble-info">
+                        ${labelHtml}<span>${displayName} · ${fmt(m.timestamp)}</span>
+                        ${canDel ? `<button class="del-msg-btn" data-id="${m.id}">删除</button>` : ''}
+                    </div>
+                </div>`;
             }).join('');
             container.scrollTop = container.scrollHeight;
-            document.querySelectorAll('.delete-private-msg').forEach(btn => {
-                btn.onclick = () => deletePrivateMsg(btn.getAttribute('data-id'));
+            container.querySelectorAll('.del-msg-btn').forEach(btn => {
+                btn.onclick = () => deletePrivateMsg(btn.dataset.id);
             });
         }
+
         document.getElementById('chatHeader').style.display = 'flex';
         document.getElementById('chatInputArea').style.display = 'flex';
-        document.getElementById('chatAvatar').innerText = contact.charAt(0).toUpperCase();
-        document.getElementById('chatWithName').innerText = contact;
+        document.getElementById('chatAvatar').textContent = contact.charAt(0).toUpperCase();
+        document.getElementById('chatWithName').textContent = contact;
         document.getElementById('deleteUserBtn').style.display = (isAdmin && contact !== currentUser) ? 'inline-block' : 'none';
+
+        // Update active contact styling without re-rendering
         document.querySelectorAll('.contact-item').forEach(el => el.classList.remove('active'));
-        const active = document.querySelector(`.contact-item[onclick="selectContact('${contact}')"]`);
-        if (active) active.classList.add('active');
+        document.querySelectorAll('.contact-item').forEach(el => {
+            if (el.querySelector('.contact-name')?.textContent === contact) el.classList.add('active');
+        });
         document.getElementById('chatMessageInput').focus();
     };
-    
+
     async function deletePrivateMsg(id) {
         showConfirm('⚠️ 删除这条消息？', async () => {
-            const { error } = await supabaseClient.from('private_messages').delete().eq('id', id);
+            const { error } = await sb.from('private_messages').delete().eq('id', id);
             if (!error) {
                 if (currentContact) await window.selectContact(currentContact);
                 await loadContacts();
-                showMessageModal('消息已删除');
-            } else {
-                showMessageModal('删除失败');
-            }
+            } else showMsg('删除失败');
         });
     }
-    
-    async function sendPrivateMessage(toUser, content) {
-        if (!content.trim()) return false;
-        const { error } = await supabaseClient.from('private_messages').insert({ fromUser: currentUser, toUser, content: content.trim(), timestamp: Date.now() });
-        return !error;
-    }
-    
+
     window.sendToCurrent = async () => {
         if (!currentUser || !currentContact) return;
         const input = document.getElementById('chatMessageInput');
         const content = input.value.trim();
         if (!content) return;
+        const isAnon = document.getElementById('anonToggle').checked;
         input.value = '';
-        const success = await sendPrivateMessage(currentContact, content);
-        if (success) {
+        const { error } = await sb.from('private_messages').insert({
+            fromUser: currentUser,
+            toUser: currentContact,
+            content,
+            isAnon,
+            timestamp: Date.now()
+        });
+        if (!error) {
             await loadContacts();
             await window.selectContact(currentContact);
-            showMessageModal('私信已发送');
         } else {
-            showMessageModal('发送失败，请稍后重试');
+            showMsg('发送失败，请稍后重试');
             input.value = content;
         }
     };
-    
-    // 发布便利贴
-    async function postPublic() {
-        if (!currentUser) { showMessageModal('请先设置昵称'); return; }
-        const content = document.getElementById('publicContent').value.trim();
-        if (!content) { showMessageModal('请输入内容'); return; }
-        const { error } = await supabaseClient.from('public_messages').insert({ username: currentUser, content, timestamp: Date.now() });
-        if (!error) {
-            document.getElementById('publicContent').value = '';
-            await refreshPublic();
-            showMessageModal('便利贴贴上啦！');
-        } else {
-            showMessageModal('发布失败，请稍后重试');
-        }
-    }
-    
-    // 设置昵称
+
+    // ── User management ───────────────────────────────────────────────────────
     async function setUserName() {
-        let newName = document.getElementById('nicknameInput').value.trim();
-        if (!newName) { showMessageModal('请输入昵称'); return; }
-        const { data: existing } = await supabaseClient.from('users').select('username').eq('username', newName).maybeSingle();
-        if (existing) { showMessageModal('该昵称已被使用，请换一个'); return; }
-        const { error } = await supabaseClient.from('users').insert({ username: newName });
-        if (error) { showMessageModal('设置失败：' + error.message); return; }
+        const newName = document.getElementById('nicknameInput').value.trim();
+        if (!newName) { showMsg('请输入昵称'); return; }
+        const { data: existing } = await sb.from('users').select('username').eq('username', newName).maybeSingle();
+        if (existing) { showMsg('该昵称已被使用，请换一个'); return; }
+        const { error } = await sb.from('users').insert({ username: newName });
+        if (error) { showMsg('设置失败：' + error.message); return; }
         currentUser = newName;
         localStorage.setItem('wall_user_saved', currentUser);
-        document.getElementById('currentUserBadge').innerHTML = `👤 ${escapeHtml(currentUser)} ▼`;
+        applyUserUI();
+        await loadContacts();
+        await refreshPublic();
+        showMsg(`昵称 "${currentUser}" 设置成功！`);
+    }
+
+    function applyUserUI() {
+        document.getElementById('currentUserBadge').textContent = `👤 ${currentUser} ▼`;
         document.getElementById('nicknameInput').disabled = true;
         document.getElementById('setNameBtn').disabled = true;
         document.getElementById('nicknameInput').value = currentUser;
-        await loadContacts();
-        await refreshPublic();
-        showMessageModal(`昵称 "${currentUser}" 设置成功！`);
     }
-    
-    // 管理员改名
+
     async function adminChangeName() {
         if (!isAdmin) return;
         const oldName = prompt('输入要修改的用户昵称：');
         if (!oldName) return;
         const newName = prompt('输入新昵称：');
         if (!newName) return;
-        const { error } = await supabaseClient.rpc('admin_rename_user', { old_name: oldName, new_name: newName });
-        if (error) showMessageModal('改名失败：' + error.message);
-        else {
-            showMessageModal(`用户 "${oldName}" 已改名为 "${newName}"`);
-            if (currentUser === oldName) {
-                currentUser = newName;
-                localStorage.setItem('wall_user_saved', currentUser);
-                document.getElementById('currentUserBadge').innerHTML = `👤 ${escapeHtml(currentUser)} ▼`;
-                if (currentContact === oldName) currentContact = newName;
-            }
-            await refreshPublic();
-            await loadContacts();
-            if (currentContact) await window.selectContact(currentContact);
+        const { error } = await sb.rpc('admin_rename_user', { old_name: oldName, new_name: newName });
+        if (error) { showMsg('改名失败：' + error.message); return; }
+        showMsg(`"${oldName}" 已改名为 "${newName}"`);
+        if (currentUser === oldName) {
+            currentUser = newName;
+            localStorage.setItem('wall_user_saved', currentUser);
+            applyUserUI();
         }
+        await refreshPublic(); await loadContacts();
+        if (currentContact) await window.selectContact(currentContact);
     }
-    
-    async function adminDeleteUserFromList(username) {
-        if (!isAdmin || username === currentUser) { showMessageModal('不能删除自己'); return; }
+
+    async function adminDeleteUser(username) {
+        if (!isAdmin || username === currentUser) { showMsg('不能删除自己'); return; }
         showConfirm(`⚠️ 确定删除用户 "${username}" 及其所有数据？`, async () => {
-            const { error } = await supabaseClient.rpc('admin_delete_user', { target_name: username });
-            if (error) showMessageModal('删除失败：' + error.message);
-            else {
-                showMessageModal(`用户 "${username}" 已删除`);
-                if (currentContact === username) {
-                    currentContact = null;
-                    document.getElementById('chatHeader').style.display = 'none';
-                    document.getElementById('chatInputArea').style.display = 'none';
-                    document.getElementById('chatMessages').innerHTML = '<div class="empty-chat">💬 留下你想对TA说的悄悄话吧～</div>';
-                }
-                await refreshPublic();
-                await loadContacts();
-                document.getElementById('userListModal').style.display = 'none';
+            const { error } = await sb.rpc('admin_delete_user', { target_name: username });
+            if (error) { showMsg('删除失败：' + error.message); return; }
+            showMsg(`用户 "${username}" 已删除`);
+            if (currentContact === username) {
+                currentContact = null;
+                document.getElementById('chatHeader').style.display = 'none';
+                document.getElementById('chatInputArea').style.display = 'none';
+                document.getElementById('chatMessages').innerHTML = '<div class="empty-chat">💬 留下你想对TA说的悄悄话吧～</div>';
             }
+            await refreshPublic(); await loadContacts();
+            document.getElementById('userListModal').style.display = 'none';
         });
     }
-    
+    window.adminDeleteUserFromList = adminDeleteUser;
+
     async function openUserListModal() {
         if (!isAdmin) return;
         const users = await getAllUsers();
-        const container = document.getElementById('allUsersList');
-        container.innerHTML = users.map(u => `<div class="user-item"><div><span class="user-avatar-small">${escapeHtml(u.charAt(0).toUpperCase())}</span><span>${escapeHtml(u)}</span></div><button class="user-delete-btn" onclick="adminDeleteUserFromList('${escapeHtml(u)}')">🗑️ 删除</button></div>`).join('');
-        document.getElementById('userListModal').style.display = 'flex';
-        const searchInput = document.getElementById('searchUserListInput');
-        if (searchInput) {
-            searchInput.oninput = (e) => {
-                const kw = e.target.value.toLowerCase();
-                const filtered = users.filter(u => u.toLowerCase().includes(kw));
-                container.innerHTML = filtered.map(u => `<div class="user-item"><div>${escapeHtml(u)}</div><button onclick="adminDeleteUserFromList('${escapeHtml(u)}')">删除</button></div>`).join('');
-            };
-        }
-    }
-    
-    // 新聊天弹窗
-    async function openSearchModal() {
-        if (!currentUser) { showMessageModal('请先设置昵称'); return; }
-        const users = await getAllUsers();
-        const modal = document.getElementById('searchUserModal');
-        const resultsDiv = document.getElementById('searchResults');
-        const searchInput = document.getElementById('searchUserInput');
-        
-        function renderUsers(list) {
-            if (list.length === 0) {
-                resultsDiv.innerHTML = '<div style="padding:20px; text-align:center;">😢 没有找到用户</div>';
-                return;
-            }
-            resultsDiv.innerHTML = list.map(u => `
-                <div class="user-item">
-                    <div>${escapeHtml(u)}</div>
-                    <button class="user-select-btn" onclick="startChatWith('${escapeHtml(u)}')">💬 发消息</button>
-                </div>
-            `).join('');
-        }
-        
-        renderUsers(users);
-        searchInput.value = '';
-        searchInput.oninput = (e) => {
-            const kw = e.target.value.toLowerCase();
-            const filtered = users.filter(u => u.toLowerCase().includes(kw));
-            renderUsers(filtered);
+        const renderList = list => {
+            document.getElementById('allUsersList').innerHTML = list.length
+                ? list.map(u => `<div class="user-item"><span>${esc(u)}</span><button class="user-delete-btn" onclick="adminDeleteUserFromList('${esc(u)}')">🗑️ 删除</button></div>`).join('')
+                : '<div style="padding:20px; text-align:center; color:#94a3b8;">无用户</div>';
         };
-        modal.style.display = 'flex';
-        setTimeout(() => searchInput.focus(), 100);
+        renderList(users);
+        document.getElementById('userListModal').style.display = 'flex';
+        const si = document.getElementById('searchUserListInput');
+        si.value = '';
+        si.oninput = e => renderList(users.filter(u => u.toLowerCase().includes(e.target.value.toLowerCase())));
     }
-    
-    window.startChatWith = async (user) => {
-        if (user === currentUser) { showMessageModal('不能和自己聊天'); return; }
+
+    async function openSearchModal() {
+        if (!currentUser) { showMsg('请先设置昵称'); return; }
+        const users = await getAllUsers();
+        const renderList = list => {
+            document.getElementById('searchResults').innerHTML = list.length
+                ? list.map(u => `<div class="user-item"><span>${esc(u)}</span><button class="user-select-btn" onclick="startChatWith('${esc(u)}')">💬 发消息</button></div>`).join('')
+                : '<div style="padding:20px; text-align:center;">😢 没有找到用户</div>';
+        };
+        const si = document.getElementById('searchUserInput');
+        si.value = '';
+        renderList(users);
+        si.oninput = e => renderList(users.filter(u => u.toLowerCase().includes(e.target.value.toLowerCase())));
+        document.getElementById('searchUserModal').style.display = 'flex';
+        setTimeout(() => si.focus(), 80);
+    }
+
+    window.startChatWith = async user => {
+        if (user === currentUser) { showMsg('不能和自己聊天'); return; }
         document.getElementById('searchUserModal').style.display = 'none';
+        // Switch to tab2 if not already
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('[data-tab="tab2"]')[0].classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById('tab2').classList.add('active');
         await loadContacts();
         await window.selectContact(user);
     };
-    
-    // 管理员登录
+
+    // ── Admin ─────────────────────────────────────────────────────────────────
     function openAdminLogin() { document.getElementById('adminLoginModal').style.display = 'flex'; document.getElementById('adminPasswordInput').value = ''; }
     function verifyAdmin() {
         if (document.getElementById('adminPasswordInput').value === ADMIN_PASSWORD) {
             isAdmin = true;
-            document.getElementById('adminBadge').style.display = 'inline-block';
+            document.getElementById('adminBadge').style.display = 'block';
             document.getElementById('adminActions').style.display = 'flex';
             document.getElementById('adminLoginModal').style.display = 'none';
-            showMessageModal('管理员模式已启用');
+            showMsg('管理员模式已启用');
             refreshPublic();
             if (currentContact) window.selectContact(currentContact);
-        } else showMessageModal('密码错误');
+        } else showMsg('密码错误');
     }
     function exitAdmin() {
         isAdmin = false;
         document.getElementById('adminBadge').style.display = 'none';
         document.getElementById('adminActions').style.display = 'none';
         document.getElementById('deleteUserBtn').style.display = 'none';
-        showMessageModal('已退出管理员模式');
+        showMsg('已退出管理员模式');
         refreshPublic();
         if (currentContact) window.selectContact(currentContact);
     }
-    
-    // 事件绑定
+
+    // ── Event bindings ────────────────────────────────────────────────────────
     document.getElementById('setNameBtn').onclick = setUserName;
     document.getElementById('postPublicBtn').onclick = postPublic;
     document.getElementById('sendChatBtn').onclick = window.sendToCurrent;
     document.getElementById('newChatBtn').onclick = openSearchModal;
     document.getElementById('closeSearchModal').onclick = () => document.getElementById('searchUserModal').style.display = 'none';
     document.getElementById('closeUserListBtn').onclick = () => document.getElementById('userListModal').style.display = 'none';
-    document.getElementById('adminLoginBtn').onclick = openAdminLogin;
+    document.getElementById('adminLoginBtn').onclick = () => { document.getElementById('userDropdown').classList.remove('show'); openAdminLogin(); };
     document.getElementById('confirmAdminLogin').onclick = verifyAdmin;
     document.getElementById('cancelAdminLogin').onclick = () => document.getElementById('adminLoginModal').style.display = 'none';
     document.getElementById('exitAdminBtn').onclick = exitAdmin;
     document.getElementById('resetNameBtn').onclick = adminChangeName;
     document.getElementById('showUsersBtn').onclick = openUserListModal;
-    document.getElementById('deleteUserBtn').onclick = async () => {
-        if (currentContact) {
-            showConfirm(`⚠️ 删除用户 ${currentContact}？`, async () => {
-                await supabaseClient.rpc('admin_delete_user', { target_name: currentContact });
-                showMessageModal('用户已删除');
-                currentContact = null;
-                await refreshPublic();
-                await loadContacts();
-                document.getElementById('chatHeader').style.display = 'none';
-                document.getElementById('chatInputArea').style.display = 'none';
-                document.getElementById('chatMessages').innerHTML = '<div class="empty-chat">💬 留下你想对TA说的悄悄话吧～</div>';
-            });
-        }
+    document.getElementById('deleteUserBtn').onclick = () => {
+        if (currentContact) adminDeleteUser(currentContact);
     };
-    document.getElementById('chatMessageInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') window.sendToCurrent(); });
-    document.getElementById('userMenu').addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('userDropdown').classList.toggle('show'); });
+    document.getElementById('chatMessageInput').addEventListener('keypress', e => { if (e.key === 'Enter') window.sendToCurrent(); });
+    document.getElementById('nicknameInput').addEventListener('keypress', e => { if (e.key === 'Enter') setUserName(); });
+    document.getElementById('adminPasswordInput').addEventListener('keypress', e => { if (e.key === 'Enter') verifyAdmin(); });
+    document.getElementById('userMenu').addEventListener('click', e => { e.stopPropagation(); document.getElementById('userDropdown').classList.toggle('show'); });
     document.addEventListener('click', () => document.getElementById('userDropdown').classList.remove('show'));
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.getElementById(btn.dataset.tab).classList.add('active');
             if (btn.dataset.tab === 'tab2' && currentUser) loadContacts();
         });
     });
-    
+
+    // ── Init ──────────────────────────────────────────────────────────────────
     (async () => {
         const saved = localStorage.getItem('wall_user_saved');
         if (saved) {
-            const { data } = await supabaseClient.from('users').select('username').eq('username', saved).maybeSingle();
-            if (data) {
-                currentUser = saved;
-                document.getElementById('currentUserBadge').innerHTML = `👤 ${escapeHtml(currentUser)} ▼`;
-                document.getElementById('nicknameInput').disabled = true;
-                document.getElementById('setNameBtn').disabled = true;
-                document.getElementById('nicknameInput').value = currentUser;
-            } else {
-                localStorage.removeItem('wall_user_saved');
-            }
+            const { data } = await sb.from('users').select('username').eq('username', saved).maybeSingle();
+            if (data) { currentUser = saved; applyUserUI(); }
+            else localStorage.removeItem('wall_user_saved');
         }
         await refreshPublic();
         if (currentUser) await loadContacts();
-        
-        supabaseClient.channel('public-changes')
-            .on('postgres_changes', { event: '*', schema: 'public', table: 'public_messages' }, () => refreshPublic())
-            .on('postgres_changes', { event: '*', schema: 'public', table: 'public_message_replies' }, () => refreshPublic())
+
+        sb.channel('public-changes')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'public_messages' }, refreshPublic)
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'public_message_replies' }, refreshPublic)
             .subscribe();
-        supabaseClient.channel('private-changes')
+        sb.channel('private-changes')
             .on('postgres_changes', { event: '*', schema: 'public', table: 'private_messages' }, async () => {
                 if (currentUser) { await loadContacts(); if (currentContact) await window.selectContact(currentContact); }
             })
