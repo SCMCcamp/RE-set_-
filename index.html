@@ -1237,6 +1237,217 @@
       border-right: none;
     }
 
+    /* 匿名信 */
+    .anon-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .anon-send-card {
+      background: white;
+      border-radius: var(--r-xl);
+      padding: 22px 24px;
+      box-shadow: var(--sh-sm);
+      border: 1.5px solid var(--anon-light);
+    }
+    .anon-send-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--anon-purple);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .anon-send-hint {
+      font-size: 0.77rem;
+      color: var(--mahog-faint);
+      margin-bottom: 14px;
+    }
+    .anon-recipient-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .anon-to-input {
+      flex: 1;
+      padding: 10px 16px;
+      border: 1.5px solid var(--anon-light);
+      border-radius: var(--r-pill);
+      font-size: 0.88rem;
+      font-family: inherit;
+      background: var(--linen);
+      color: var(--ink);
+      transition: border-color var(--ease);
+    }
+    .anon-to-input:focus {
+      outline: none;
+      border-color: var(--anon-purple);
+      background: white;
+    }
+    .anon-search-btn {
+      background: var(--anon-purple);
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      border-radius: var(--r-pill);
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: background var(--ease);
+    }
+    .anon-search-btn:hover { background: #4a3d8a; }
+    .anon-recipient-result {
+      background: var(--anon-light);
+      border-radius: var(--r-md);
+      padding: 10px 14px;
+      font-size: 0.83rem;
+      color: var(--anon-purple);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .anon-recipient-result .clear-recipient {
+      background: none;
+      border: none;
+      color: var(--mahog-faint);
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+    .anon-msg-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--anon-light);
+      border-radius: var(--r-md);
+      font-size: 0.9rem;
+      font-family: inherit;
+      font-weight: 300;
+      background: var(--linen);
+      color: var(--ink);
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color var(--ease), background var(--ease);
+      margin-bottom: 12px;
+    }
+    .anon-msg-textarea:focus {
+      outline: none;
+      border-color: var(--anon-purple);
+      background: white;
+    }
+    .anon-send-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .anon-privacy-note {
+      font-size: 0.71rem;
+      color: var(--anon-purple);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-anon-send {
+      background: var(--anon-purple);
+      border: none;
+      color: white;
+      padding: 11px 24px;
+      border-radius: var(--r-pill);
+      font-size: 0.87rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      box-shadow: 0 3px 10px rgba(92,79,160,0.25);
+      transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+    }
+    .btn-anon-send:hover {
+      background: #4a3d8a;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 18px rgba(92,79,160,0.3);
+    }
+    .anon-inbox-card {
+      background: white;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--sh-sm);
+      border: 1.5px solid var(--anon-light);
+    }
+    .anon-inbox-header {
+      background: linear-gradient(135deg, var(--anon-purple), #3d3580);
+      color: white;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.87rem;
+      font-weight: 500;
+    }
+    .anon-inbox-note {
+      font-size: 0.67rem;
+      opacity: 0.7;
+    }
+    .anon-inbox-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .anon-inbox-empty {
+      text-align: center;
+      color: var(--mahog-faint);
+      padding: 40px 20px;
+      font-size: 0.83rem;
+    }
+    .anon-inbox-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--ivory-dark);
+      position: relative;
+    }
+    .anon-inbox-item:last-child { border-bottom: none; }
+    .anon-inbox-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+    .anon-from-badge {
+      background: var(--anon-light);
+      color: var(--anon-purple);
+      padding: 2px 10px;
+      border-radius: var(--r-pill);
+      font-size: 0.67rem;
+      font-weight: 500;
+    }
+    .anon-inbox-time {
+      font-size: 0.62rem;
+      color: var(--mahog-faint);
+      margin-left: auto;
+    }
+    .anon-inbox-content {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--ink-mid);
+      word-break: break-word;
+    }
+    .anon-del-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: var(--parch);
+      cursor: pointer;
+      font-size: 0.67rem;
+      transition: color var(--ease);
+    }
+    .anon-del-btn:hover { color: var(--ruby); }
+
     /* 动画 */
     @keyframes pin-bob {
       0%, 100% { transform: translateY(0); }
@@ -1318,6 +1529,10 @@
       <span class="icon-msg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
       私信
     </button>
+    <button class="tab-btn" data-tab="tab3">
+      <span class="icon-lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      匿名信
+    </button>
   </div>
 
   <!-- 留言墙 -->
@@ -1368,6 +1583,44 @@
             <button class="send-btn" id="sendChatBtn"><span class="icon-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>发送</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 匿名信 -->
+  <div id="tab3" class="tab-content">
+    <div class="anon-layout">
+      <!-- 发送匿名信 -->
+      <div class="anon-send-card">
+        <div class="anon-send-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--anon-purple)" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          发送匿名信
+        </div>
+        <p class="anon-send-hint">对方只会看到消息内容，完全不知道发件人是谁</p>
+        <div class="anon-recipient-row">
+          <input type="text" id="anonToInput" class="anon-to-input" placeholder="收件人昵称…" autocomplete="off">
+          <button class="anon-search-btn" id="anonSearchBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            搜索
+          </button>
+        </div>
+        <div id="anonRecipientResult" class="anon-recipient-result" style="display:none;"></div>
+        <textarea id="anonMsgContent" class="anon-msg-textarea" rows="4" placeholder="写下你想匿名说的话…"></textarea>
+        <div class="anon-send-footer">
+          <span class="anon-privacy-note"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--anon-purple)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 发件人身份对收件人完全隐藏</span>
+          <button class="btn-anon-send" id="sendAnonBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            匿名发送
+          </button>
+        </div>
+      </div>
+      <!-- 收件箱 -->
+      <div class="anon-inbox-card">
+        <div class="anon-inbox-header">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--anon-purple)" stroke-width="2.2"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9"/><polyline points="2 6 12 12 22 6"/></svg> 我的匿名信箱</span>
+          <span class="anon-inbox-note">发件人对你完全匿名</span>
+        </div>
+        <div id="anonInboxList" class="anon-inbox-list"><div class="anon-inbox-empty">加载中…</div></div>
       </div>
     </div>
   </div>
@@ -1504,7 +1757,7 @@
         const isAnonMsg = m.isAnon === true;
         let displayName = "";
         if (isSender) {
-          displayName = isAnonMsg ? "我（匿名）" : "我";
+          displayName = isAnonMsg ? "匿名" : "我";
         } else {
           displayName = isAnonMsg ? "匿名" : m.fromUser;
         }
@@ -1615,6 +1868,53 @@
     await loadContacts(); await window.selectContact(user);
   };
 
+  // 匿名信
+  let anonRecipient = null;
+  async function searchAnonRecipient() {
+    const val = document.getElementById('anonToInput').value.trim();
+    if (!val) { showMsg('请输入收件人昵称'); return; }
+    if (val === currentUser) { showMsg('不能发给自己'); return; }
+    const { data } = await sb.from('users').select('username').eq('username', val).maybeSingle();
+    const box = document.getElementById('anonRecipientResult');
+    if (!data) { box.style.display = 'flex'; box.innerHTML = `<span style="color:var(--ruby);">找不到用户「${esc(val)}」</span>`; anonRecipient = null; return; }
+    anonRecipient = data.username;
+    box.style.display = 'flex';
+    box.innerHTML = `<span>✓ 收件人：<strong>${esc(anonRecipient)}</strong></span><button class="clear-recipient" onclick="clearAnonRecipient()">✕ 清除</button>`;
+    document.getElementById('anonToInput').value = '';
+  }
+  window.clearAnonRecipient = () => {
+    anonRecipient = null;
+    document.getElementById('anonRecipientResult').style.display = 'none';
+  };
+  async function sendAnonMessage() {
+    if (!currentUser) { showMsg('请先设置昵称'); return; }
+    if (!anonRecipient) { showMsg('请先搜索并选择收件人'); return; }
+    const content = document.getElementById('anonMsgContent').value.trim();
+    if (!content) { showMsg('请输入消息内容'); return; }
+    const { error } = await sb.from('anonymous_messages').insert({ toUser: anonRecipient, content, timestamp: Date.now() });
+    if (error) { showMsg('发送失败：' + error.message); return; }
+    document.getElementById('anonMsgContent').value = '';
+    anonRecipient = null;
+    document.getElementById('anonRecipientResult').style.display = 'none';
+    showMsg('匿名信已发送！对方不会知道是你。');
+  }
+  async function loadAnonInbox() {
+    if (!currentUser) { document.getElementById('anonInboxList').innerHTML = '<div class="anon-inbox-empty">请先设置昵称</div>'; return; }
+    const { data, error } = await sb.from('anonymous_messages').select('id,content,timestamp').eq('toUser', currentUser).order('timestamp', { ascending: false });
+    const list = document.getElementById('anonInboxList');
+    if (error || !data || !data.length) { list.innerHTML = '<div class="anon-inbox-empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--parch)" stroke-width="1.2" style="display:block;margin:0 auto 10px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>暂无匿名信</div>'; return; }
+    list.innerHTML = data.map(m => `<div class="anon-inbox-item"><div class="anon-inbox-meta"><span class="anon-from-badge">匿名</span><span class="anon-inbox-time">${fmt(m.timestamp)}</span></div><div class="anon-inbox-content">${esc(m.content)}</div>${isAdmin ? `<button class="anon-del-btn" onclick="deleteAnonMsg('${m.id}')">删除</button>` : ''}</div>`).join('');
+  }
+  window.deleteAnonMsg = async id => {
+    showConfirm('确定删除这条匿名信？', async () => {
+      const { error } = await sb.from('anonymous_messages').delete().eq('id', id);
+      if (!error) loadAnonInbox(); else showMsg('删除失败');
+    });
+  };
+  document.getElementById('anonSearchBtn').onclick = searchAnonRecipient;
+  document.getElementById('sendAnonBtn').onclick = sendAnonMessage;
+  document.getElementById('anonToInput').addEventListener('keypress', e => { if (e.key === 'Enter') searchAnonRecipient(); });
+
   // 管理员认证
   function openAdminLogin() { document.getElementById('adminLoginModal').style.display = 'flex'; document.getElementById('adminPasswordInput').value = ''; }
   function verifyAdmin() {
@@ -1652,6 +1952,12 @@
   document.getElementById('resetNameBtn').onclick = adminChangeName;
   document.getElementById('showUsersBtn').onclick = openUserListModal;
   document.getElementById('deleteUserBtn').onclick = () => { if (currentContact) adminDeleteUser(currentContact); };
+  document.getElementById('anonToggle').addEventListener('change', e => {
+    if (currentContact) {
+      document.getElementById('chatWithName').textContent = e.target.checked ? '匿名' : currentContact;
+      document.getElementById('chatAvatar').textContent = e.target.checked ? '?' : currentContact.charAt(0).toUpperCase();
+    }
+  });
   document.getElementById('chatMessageInput').addEventListener('keypress', e => { if (e.key === 'Enter') window.sendToCurrent(); });
   document.getElementById('nicknameInput').addEventListener('keypress', e => { if (e.key === 'Enter') setUserName(); });
   document.getElementById('adminPasswordInput').addEventListener('keypress', e => { if (e.key === 'Enter') verifyAdmin(); });
@@ -1664,6 +1970,7 @@
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById(btn.dataset.tab).classList.add('active');
       if (btn.dataset.tab === 'tab2' && currentUser) loadContacts();
+      if (btn.dataset.tab === 'tab3') loadAnonInbox();
     });
   });
 
@@ -1681,6 +1988,2007 @@
       .on('postgres_changes', { event: '*', schema: 'public', table: 'public_message_replies' }, refreshPublic).subscribe();
     sb.channel('private-changes').on('postgres_changes', { event: '*', schema: 'public', table: 'private_messages' }, async () => {
       if (currentUser) { await loadContacts(); if (currentContact) await window.selectContact(currentContact); }
+    }).subscribe();
+    sb.channel('anon-changes').on('postgres_changes', { event: '*', schema: 'public', table: 'anonymous_messages' }, async () => {
+      if (currentUser && document.getElementById('tab3').classList.contains('active')) loadAnonInbox();
+    }).subscribe();
+  })();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>RE:Set 留言墙 · 便利贴+私信+匿名</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ========== 全局变量 ========== */
+    :root {
+      --forest: #2d4a27;
+      --forest-mid: #3d6135;
+      --forest-lt: #5a8a50;
+      --forest-glow: rgba(45,74,39,0.2);
+      --gold: #b8913a;
+      --gold-lt: #f0e0b0;
+      --gold-mid: #d4b870;
+      --gold-faint: #f7f0e0;
+      --ivory: #faf7f0;
+      --ivory-dark: #f0e8d4;
+      --parch: #e6d9c0;
+      --linen: #f5efe3;
+      --mahog: #3a2510;
+      --mahog-mid: #5c3d20;
+      --mahog-lt: #8a6040;
+      --mahog-faint: #c0a080;
+      --ink: #1a150d;
+      --ink-mid: #2e2518;
+      --ink-lt: #4a3c28;
+      --white: #ffffff;
+      --ruby: #8b1a2a;
+      --ruby-lt: #fdf0f2;
+      --anon-purple: #5c4fa0;
+      --anon-light: #e9e6f5;
+      --sh-xs: 0 1px 4px rgba(58,37,16,0.07);
+      --sh-sm: 0 2px 12px rgba(58,37,16,0.09);
+      --sh-md: 0 6px 28px rgba(58,37,16,0.12);
+      --sh-lg: 0 16px 52px rgba(58,37,16,0.15);
+      --r-sm: 10px;
+      --r-md: 16px;
+      --r-lg: 22px;
+      --r-xl: 30px;
+      --r-pill: 999px;
+      --ease: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 300;
+      background: var(--ivory);
+      min-height: 100vh;
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 70% 55% at 10% 8%, rgba(184, 145, 58, 0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 65% at 90% 92%, rgba(45, 74, 39, 0.08) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='19' y='19' width='2' height='2' rx='1' fill='%23c0a080' fill-opacity='0.22'/%3E%3C/svg%3E");
+      background-size: auto, auto, 40px 40px;
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 16px calc(28px + env(safe-area-inset-bottom, 0px));
+    }
+
+    /* 头部 */
+    .header-card {
+      background: var(--forest);
+      border-radius: var(--r-xl);
+      padding: 22px 28px;
+      margin-bottom: 18px;
+      box-shadow: var(--sh-md), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--r-xl);
+      background: radial-gradient(circle at 90% -30%, rgba(184, 145, 58, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 15% 130%, rgba(255, 255, 255, 0.05) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .header-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-area {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .logo-eyebrow {
+      font-size: 0.62rem;
+      font-weight: 400;
+      color: var(--gold-mid);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      color: white;
+      font-size: 1.52rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .logo-subtitle {
+      margin-top: 7px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .logo-subtitle span {
+      font-size: 0.64rem;
+      color: rgba(255, 255, 255, 0.42);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .logo-subtitle .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--gold-mid);
+      opacity: 0.55;
+    }
+
+    .user-menu {
+      position: relative;
+      z-index: 200;
+    }
+
+    .user-badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(184, 145, 58, 0.4);
+      padding: 9px 18px;
+      border-radius: var(--r-pill);
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      transition: background var(--ease), border-color var(--ease);
+    }
+
+    .user-badge:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(184, 145, 58, 0.7);
+    }
+
+    .user-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: var(--white);
+      border-radius: var(--r-lg);
+      box-shadow: var(--sh-lg);
+      min-width: 200px;
+      z-index: 500;
+      overflow: hidden;
+      display: none;
+      border: 1px solid var(--parch);
+    }
+
+    .user-dropdown.show {
+      display: block;
+      animation: dropFade 0.14s ease;
+    }
+
+    @keyframes dropFade {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dropdown-item {
+      padding: 13px 18px;
+      font-size: 0.84rem;
+      cursor: pointer;
+      border-bottom: 1px solid var(--ivory-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink-mid);
+      transition: background var(--ease), color var(--ease);
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+      background: var(--linen);
+      color: var(--forest);
+    }
+
+    /* 昵称卡片 */
+    .nickname-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 18px 22px;
+      margin-bottom: 18px;
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--ivory-dark);
+    }
+
+    .nickname-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nickname-group input {
+      flex: 1;
+      min-width: 0;
+      padding: 11px 20px;
+      border: 1.5px solid var(--parch);
+      border-radius: var(--r-pill);
+      font-size: 0.9rem;
+      font-family: inherit;
+      font-weight: 400;
+      background: var(--linen);
+      color: var(--ink);
+      transition: border-color var(--ease), background var(--ease);
+    }
+
+    .nickname-group input:focus {
+      outline: none;
+      border-color: var(--forest);
+      background: white;
+    }
+
+    .nickname-group input:disabled {
+      background: var(--ivory-dark);
+      color: var(--mahog-lt);
+    }
+
+    .btn-primary {
+      background: var(--forest);
+      padding: 11px 24px;
+      border: none;
+      border-radius: var(--r-pill);
+      color: white;
+      font-weight: 500;
+      font-size: 0.87rem;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-family: inherit;
+      box-shadow: 0 3px 10px var(--forest-glow);
+      transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 18px var(--forest-glow);
+      background: var(--forest-mid);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .admin-actions {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--ivory-dark);
+      display: none;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .admin-actions button {
+      background: transparent;
+      border: 1px solid var(--gold-mid);
+      color: var(--mahog-mid);
+      padding: 7px 16px;
+      border-radius: var(--r-pill);
+      font-weight: 500;
+      font-size: 0.77rem;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--ease);
+    }
+
+    .admin-actions button:hover {
+      background: var(--gold-lt);
+      border-color: var(--gold);
+      color: var(--mahog);
+    }
+
+    .admin-actions .exit-admin {
+      border-color: var(--parch);
+      color: var(--mahog-faint);
+    }
+
+    .admin-badge-bar {
+      display: none;
+      align-items: center;
+      gap: 7px;
+      margin-top: 10px;
+      font-size: 0.71rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    /* 标签页 */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      margin-bottom: 18px;
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 5px;
+      box-shadow: var(--sh-xs);
+      border: 1px solid var(--ivory-dark);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 11px 14px;
+      border: none;
+      background: transparent;
+      border-radius: var(--r-md);
+      font-size: 0.87rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--mahog-faint);
+      font-family: inherit;
+      transition: all var(--ease);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: var(--linen);
+      color: var(--mahog-lt);
+    }
+
+    .tab-btn.active {
+      background: var(--forest);
+      color: white;
+      box-shadow: 0 2px 10px var(--forest-glow);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeUp 0.18s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 白板 */
+    .whiteboard {
+      background: var(--linen);
+      border-radius: var(--r-xl);
+      padding: 24px 22px;
+      box-shadow: var(--sh-md);
+      border: 1px solid var(--parch);
+    }
+
+    .whiteboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--parch);
+    }
+
+    .whiteboard-header h2 {
+      color: var(--mahog);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .wb-badge {
+      background: var(--gold-faint);
+      color: var(--gold);
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--gold-mid);
+    }
+
+    .compose-area {
+      background: white;
+      border-radius: var(--r-lg);
+      padding: 16px;
+      margin-bottom: 24px;
+      border: 1px solid var(--parch);
+    }
+
+    .compose-area textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--ivory-dark);
+      border-radius: var(--r-md);
+      font-size: 0.91rem;
+      font-family: inherit;
+      font-weight: 300;
+      background: var(--linen);
+      color: var(--ink);
+      resize: vertical;
+      min-height: 90px;
+      transition: border-color var(--ease), background var(--ease);
+    }
+
+    .compose-area textarea:focus {
+      outline: none;
+      border-color: var(--forest);
+      background: white;
+    }
+
+    .compose-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 12px;
+    }
+
+    .sticky-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sticky-note {
+      background: white;
+      padding: 18px 20px;
+      border-radius: var(--r-lg);
+      border-left: 3px solid var(--forest-lt);
+      box-shadow: var(--sh-sm);
+      transition: transform var(--ease), box-shadow var(--ease);
+      position: relative;
+    }
+
+    .sticky-note::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle at top right, var(--gold-faint) 0%, transparent 72%);
+      border-radius: 0 var(--r-lg) 0 0;
+      pointer-events: none;
+    }
+
+    .sticky-note:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--sh-md);
+    }
+
+    .sticky-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .sticky-author {
+      background: var(--linen);
+      padding: 3px 12px;
+      border-radius: var(--r-pill);
+      font-size: 0.71rem;
+      font-weight: 500;
+      color: var(--forest);
+      border: 1px solid var(--parch);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sticky-time {
+      font-size: 0.62rem;
+      color: var(--mahog-faint);
+    }
+
+    .sticky-content {
+      font-size: 0.9rem;
+      line-height: 1.68;
+      color: var(--ink-mid);
+      word-break: break-word;
+      margin-bottom: 12px;
+    }
+
+    .sticky-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px 12px;
+      border-radius: var(--r-pill);
+      font-size: 0.71rem;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--ease), color var(--ease);
+    }
+
+    .action-btn.reply {
+      color: var(--forest);
+    }
+
+    .action-btn.reply:hover {
+      background: var(--linen);
+    }
+
+    .action-btn.delete {
+      color: var(--mahog-faint);
+    }
+
+    .action-btn.delete:hover {
+      background: #fef4f4;
+      color: var(--ruby);
+    }
+
+    .replies-section {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--ivory-dark);
+    }
+
+    .reply-item {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--ivory-dark);
+      font-size: 0.78rem;
+      color: var(--ink-mid);
+    }
+
+    .reply-item:last-child {
+      border-bottom: none;
+    }
+
+    .reply-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+    }
+
+    .reply-author {
+      font-weight: 500;
+      color: var(--forest);
+      font-size: 0.71rem;
+    }
+
+    .reply-time {
+      font-size: 0.6rem;
+      color: var(--mahog-faint);
+    }
+
+    .reply-content {
+      word-break: break-word;
+      line-height: 1.5;
+    }
+
+    .reply-input-area {
+      margin-top: 10px;
+      display: none;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .reply-input-area input {
+      flex: 1;
+      padding: 8px 14px;
+      border-radius: var(--r-pill);
+      border: 1.5px solid var(--parch);
+      font-size: 0.8rem;
+      font-family: inherit;
+      background: var(--linen);
+      transition: border-color var(--ease);
+    }
+
+    .reply-input-area input:focus {
+      outline: none;
+      border-color: var(--forest);
+      background: white;
+    }
+
+    .reply-input-area button {
+      background: var(--forest);
+      border: none;
+      color: white;
+      padding: 8px 18px;
+      border-radius: var(--r-pill);
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .pagination-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .load-more-btn {
+      background: white;
+      color: var(--mahog-lt);
+      border: 1.5px solid var(--parch);
+      padding: 10px 32px;
+      border-radius: var(--r-pill);
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .load-more-btn:hover {
+      background: var(--linen);
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+
+    /* 私信布局 */
+    .private-layout {
+      display: flex;
+      gap: 16px;
+      min-height: 620px;
+    }
+
+    @media (max-width: 660px) {
+      .private-layout {
+        flex-direction: column;
+      }
+      .contact-list {
+        width: 100% !important;
+        max-height: 240px;
+      }
+      .chat-area {
+        min-height: 520px;
+      }
+    }
+
+    .contact-list {
+      width: 280px;
+      flex-shrink: 0;
+      background: white;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--ivory-dark);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-header {
+      background: var(--forest);
+      color: white;
+      padding: 16px 18px;
+      font-weight: 500;
+      font-size: 0.87rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .new-chat-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      padding: 7px 14px;
+      border-radius: var(--r-pill);
+      cursor: pointer;
+      font-size: 0.77rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--ease);
+    }
+
+    .new-chat-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .contact-items {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--ivory-dark);
+      cursor: pointer;
+      transition: background var(--ease);
+    }
+
+    .contact-item:hover {
+      background: var(--linen);
+    }
+
+    .contact-item.active {
+      background: linear-gradient(90deg, rgba(45, 74, 39, 0.07), transparent);
+      border-left: 3px solid var(--forest);
+    }
+
+    .contact-avatar {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--parch), var(--ivory-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--forest);
+      font-size: 1rem;
+      border: 2px solid var(--gold-lt);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .contact-name {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.87rem;
+    }
+
+    .contact-preview {
+      font-size: 0.67rem;
+      color: var(--mahog-lt);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .empty-contact {
+      text-align: center;
+      color: var(--mahog-faint);
+      padding: 36px 16px;
+      font-size: 0.83rem;
+    }
+
+    .chat-area {
+      flex: 1;
+      background: white;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--ivory-dark);
+    }
+
+    .chat-header {
+      background: var(--linen);
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--parch);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ch-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--parch), var(--ivory-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--forest);
+      border: 2px solid var(--gold-lt);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .chat-header h3 {
+      color: var(--ink);
+      flex: 1;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .chat-status {
+      font-size: 0.64rem;
+      color: var(--mahog-faint);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .delete-user-btn {
+      background: var(--ruby);
+      border: none;
+      color: white;
+      padding: 7px 14px;
+      border-radius: var(--r-pill);
+      font-size: 0.72rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--ease);
+    }
+
+    .delete-user-btn:hover {
+      background: var(--mahog);
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 22px 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: linear-gradient(180deg, var(--ivory) 0%, white 60%);
+    }
+
+    .empty-chat {
+      text-align: center;
+      color: var(--mahog-faint);
+      padding: 52px 20px;
+      font-size: 0.87rem;
+    }
+
+    .chat-bubble {
+      display: flex;
+      flex-direction: column;
+      max-width: 76%;
+    }
+
+    .bubble-sent {
+      align-self: flex-end;
+    }
+
+    .bubble-received {
+      align-self: flex-start;
+    }
+
+    .bubble-content {
+      padding: 11px 16px;
+      border-radius: 18px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+
+    .bubble-sent .bubble-content {
+      background: var(--forest);
+      color: white;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 2px 8px var(--forest-glow);
+    }
+
+    .bubble-received .bubble-content {
+      background: white;
+      color: var(--ink-mid);
+      border: 1px solid var(--parch);
+      border-bottom-left-radius: 4px;
+      box-shadow: var(--sh-xs);
+    }
+
+    .bubble-anon .bubble-content {
+      background: linear-gradient(135deg, var(--anon-purple), #3d3580);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .bubble-info {
+      font-size: 0.6rem;
+      color: var(--mahog-faint);
+      margin: 4px 10px 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .bubble-sent .bubble-info {
+      justify-content: flex-end;
+    }
+
+    .bubble-received .bubble-info {
+      justify-content: flex-start;
+    }
+
+    .anon-tag {
+      background: var(--anon-light);
+      color: var(--anon-purple);
+      padding: 2px 8px;
+      border-radius: var(--r-pill);
+      font-size: 0.58rem;
+      font-weight: 500;
+    }
+
+    .del-msg-btn {
+      background: none;
+      border: none;
+      color: var(--parch);
+      cursor: pointer;
+      font-size: 0.62rem;
+      transition: color var(--ease);
+    }
+
+    .del-msg-btn:hover {
+      color: var(--ruby);
+    }
+
+    .chat-input-area {
+      padding: 14px 18px;
+      background: white;
+      border-top: 1px solid var(--parch);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .anon-toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      background: var(--linen);
+      border-radius: var(--r-md);
+      border: 1px solid var(--parch);
+    }
+
+    .anon-toggle {
+      appearance: none;
+      width: 38px;
+      height: 21px;
+      background: var(--parch);
+      border-radius: 20px;
+      cursor: pointer;
+      position: relative;
+      transition: background var(--ease);
+      flex-shrink: 0;
+    }
+
+    .anon-toggle:checked {
+      background: var(--anon-purple);
+    }
+
+    .anon-toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 15px;
+      height: 15px;
+      background: white;
+      border-radius: 50%;
+      transition: left var(--ease);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+    }
+
+    .anon-toggle:checked::after {
+      left: 20px;
+    }
+
+    .anon-label {
+      font-size: 0.74rem;
+      color: var(--mahog-lt);
+      cursor: pointer;
+      user-select: none;
+      flex: 1;
+    }
+
+    .anon-label strong {
+      color: var(--anon-purple);
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 18px;
+      border: 1.5px solid var(--parch);
+      border-radius: var(--r-pill);
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: var(--linen);
+      transition: all var(--ease);
+    }
+
+    .chat-input-row input:focus {
+      outline: none;
+      border-color: var(--forest);
+      background: white;
+    }
+
+    .send-btn {
+      background: var(--forest);
+      border: none;
+      color: white;
+      padding: 12px 22px;
+      border-radius: var(--r-pill);
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+    }
+
+    .send-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px var(--forest-glow);
+      background: var(--forest-mid);
+    }
+
+    /* 模态框 */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 13, 8, 0.58);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-container {
+      background: white;
+      border-radius: var(--r-xl);
+      padding: 26px;
+      width: 100%;
+      max-width: 400px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: var(--sh-lg);
+      border: 1px solid var(--parch);
+      animation: modalIn 0.18s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(0.93);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-container h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .modal-container p {
+      margin-bottom: 16px;
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    .modal-search {
+      width: 100%;
+      padding: 11px 16px;
+      border: 1.5px solid var(--parch);
+      border-radius: var(--r-pill);
+      font-size: 0.9rem;
+      background: var(--linen);
+      margin-bottom: 14px;
+    }
+
+    .modal-search:focus {
+      outline: none;
+      border-color: var(--forest);
+      background: white;
+    }
+
+    .user-list-modal {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid var(--parch);
+      border-radius: var(--r-md);
+    }
+
+    .user-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--ivory-dark);
+    }
+
+    .user-item:last-child {
+      border-bottom: none;
+    }
+
+    .user-select-btn {
+      background: var(--forest);
+      border: none;
+      color: white;
+      padding: 6px 16px;
+      border-radius: var(--r-pill);
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+
+    .user-delete-btn {
+      background: var(--ruby);
+      border: none;
+      color: white;
+      padding: 6px 14px;
+      border-radius: var(--r-pill);
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .modal-buttons button {
+      flex: 1;
+      padding: 12px;
+      border-radius: var(--r-pill);
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-size: 0.9rem;
+    }
+
+    .modal-buttons button:first-child {
+      background: var(--forest);
+      color: white;
+    }
+
+    .modal-buttons button:last-child {
+      background: var(--linen);
+      color: var(--mahog-lt);
+      border: 1.5px solid var(--parch);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.67rem;
+      color: var(--mahog-faint);
+    }
+
+    footer span {
+      padding: 0 8px;
+      border-right: 1px solid var(--parch);
+    }
+
+    footer span:last-child {
+      border-right: none;
+    }
+
+    /* 匿名信 */
+    .anon-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .anon-send-card {
+      background: white;
+      border-radius: var(--r-xl);
+      padding: 22px 24px;
+      box-shadow: var(--sh-sm);
+      border: 1.5px solid var(--anon-light);
+    }
+    .anon-send-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--anon-purple);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .anon-send-hint {
+      font-size: 0.77rem;
+      color: var(--mahog-faint);
+      margin-bottom: 14px;
+    }
+    .anon-recipient-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .anon-to-input {
+      flex: 1;
+      padding: 10px 16px;
+      border: 1.5px solid var(--anon-light);
+      border-radius: var(--r-pill);
+      font-size: 0.88rem;
+      font-family: inherit;
+      background: var(--linen);
+      color: var(--ink);
+      transition: border-color var(--ease);
+    }
+    .anon-to-input:focus {
+      outline: none;
+      border-color: var(--anon-purple);
+      background: white;
+    }
+    .anon-search-btn {
+      background: var(--anon-purple);
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      border-radius: var(--r-pill);
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: background var(--ease);
+    }
+    .anon-search-btn:hover { background: #4a3d8a; }
+    .anon-recipient-result {
+      background: var(--anon-light);
+      border-radius: var(--r-md);
+      padding: 10px 14px;
+      font-size: 0.83rem;
+      color: var(--anon-purple);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .anon-recipient-result .clear-recipient {
+      background: none;
+      border: none;
+      color: var(--mahog-faint);
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+    .anon-msg-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--anon-light);
+      border-radius: var(--r-md);
+      font-size: 0.9rem;
+      font-family: inherit;
+      font-weight: 300;
+      background: var(--linen);
+      color: var(--ink);
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color var(--ease), background var(--ease);
+      margin-bottom: 12px;
+    }
+    .anon-msg-textarea:focus {
+      outline: none;
+      border-color: var(--anon-purple);
+      background: white;
+    }
+    .anon-send-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .anon-privacy-note {
+      font-size: 0.71rem;
+      color: var(--anon-purple);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-anon-send {
+      background: var(--anon-purple);
+      border: none;
+      color: white;
+      padding: 11px 24px;
+      border-radius: var(--r-pill);
+      font-size: 0.87rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      box-shadow: 0 3px 10px rgba(92,79,160,0.25);
+      transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+    }
+    .btn-anon-send:hover {
+      background: #4a3d8a;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 18px rgba(92,79,160,0.3);
+    }
+    .anon-inbox-card {
+      background: white;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--sh-sm);
+      border: 1.5px solid var(--anon-light);
+    }
+    .anon-inbox-header {
+      background: linear-gradient(135deg, var(--anon-purple), #3d3580);
+      color: white;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.87rem;
+      font-weight: 500;
+    }
+    .anon-inbox-note {
+      font-size: 0.67rem;
+      opacity: 0.7;
+    }
+    .anon-inbox-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .anon-inbox-empty {
+      text-align: center;
+      color: var(--mahog-faint);
+      padding: 40px 20px;
+      font-size: 0.83rem;
+    }
+    .anon-inbox-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--ivory-dark);
+      position: relative;
+    }
+    .anon-inbox-item:last-child { border-bottom: none; }
+    .anon-inbox-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+    .anon-from-badge {
+      background: var(--anon-light);
+      color: var(--anon-purple);
+      padding: 2px 10px;
+      border-radius: var(--r-pill);
+      font-size: 0.67rem;
+      font-weight: 500;
+    }
+    .anon-inbox-time {
+      font-size: 0.62rem;
+      color: var(--mahog-faint);
+      margin-left: auto;
+    }
+    .anon-inbox-content {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--ink-mid);
+      word-break: break-word;
+    }
+    .anon-del-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: var(--parch);
+      cursor: pointer;
+      font-size: 0.67rem;
+      transition: color var(--ease);
+    }
+    .anon-del-btn:hover { color: var(--ruby); }
+
+    /* 动画 */
+    @keyframes pin-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    @keyframes msg-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes lock-bounce {
+      0%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-2px); }
+      70% { transform: translateY(-1px); }
+    }
+    .icon-pin { animation: pin-bob 2.4s ease-in-out infinite; }
+    .icon-msg { animation: msg-pulse 2.6s ease-in-out infinite; }
+    .icon-lock { animation: lock-bounce 2.2s ease-in-out infinite; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="app">
+
+  <!-- 头部 -->
+  <div class="header-card">
+    <div class="logo-area">
+      <p class="logo-eyebrow">Community Board</p>
+      <h1 class="logo-title">RE:Set 留言墙</h1>
+      <div class="logo-subtitle">
+        <span>便利贴白板</span>
+        <span class="dot"></span>
+        <span>评论</span>
+        <span class="dot"></span>
+        <span>私信聊天室</span>
+      </div>
+    </div>
+    <div class="user-menu" id="userMenu">
+      <div class="user-badge" id="currentUserBadge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span id="userBadgeText">未设置昵称</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="user-dropdown" id="userDropdown">
+        <div class="dropdown-item" id="adminLoginBtn">
+          <span class="icon-lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          管理员登录
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 昵称卡片 -->
+  <div class="nickname-card">
+    <div class="nickname-group">
+      <input type="text" id="nicknameInput" placeholder="输入你的昵称，开始留言…">
+      <button class="btn-primary" id="setNameBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        设置昵称
+      </button>
+    </div>
+    <div id="adminActions" class="admin-actions">
+      <button id="resetNameBtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>修改昵称</button>
+      <button id="showUsersBtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>用户列表</button>
+      <button id="exitAdminBtn" class="exit-admin"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>退出管理</button>
+    </div>
+    <div id="adminBadge" class="admin-badge-bar">
+      <span class="icon-star"><svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+      管理员模式已启用
+    </div>
+  </div>
+
+  <!-- 标签页 -->
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="tab1">
+      <span class="icon-pin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V17z"/></svg></span>
+      留言墙
+    </button>
+    <button class="tab-btn" data-tab="tab2">
+      <span class="icon-msg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      私信
+    </button>
+    <button class="tab-btn" data-tab="tab3">
+      <span class="icon-lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      匿名信
+    </button>
+  </div>
+
+  <!-- 留言墙 -->
+  <div id="tab1" class="tab-content active">
+    <div class="whiteboard">
+      <div class="whiteboard-header">
+        <h2><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mahog-lt)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>便利贴白板</h2>
+        <span class="wb-badge">所有人可见 · 可评论</span>
+      </div>
+      <div class="compose-area">
+        <textarea id="publicContent" rows="3" placeholder="写张便利贴，贴在大家都能看到的地方…"></textarea>
+        <div class="compose-footer">
+          <button class="btn-primary" id="postPublicBtn">
+            <span class="icon-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+            贴上便利贴
+          </button>
+        </div>
+      </div>
+      <div id="publicList" class="sticky-grid"><div class="empty-sticky">加载中…</div></div>
+      <div id="paginationControls" class="pagination-container"></div>
+    </div>
+  </div>
+
+  <!-- 私信 -->
+  <div id="tab2" class="tab-content">
+    <div class="private-layout">
+      <div class="contact-list">
+        <div class="contact-header">
+          <span style="display:flex;align-items:center;gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>联系人</span>
+          <button class="new-chat-btn" id="newChatBtn"><span class="icon-plus"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>新聊天</button>
+        </div>
+        <div class="contact-items" id="contactList"><div class="empty-contact">请先设置昵称<br>再开始私信</div></div>
+      </div>
+      <div class="chat-area">
+        <div class="chat-header" id="chatHeader" style="display:none;">
+          <div class="ch-avatar" id="chatAvatar">?</div>
+          <div style="flex:1;min-width:0;"><h3 id="chatWithName">选择联系人</h3><span class="chat-status">私信仅双方可见</span></div>
+          <button id="deleteUserBtn" class="delete-user-btn" style="display:none;"><span class="icon-trash"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6M9 6V4h6v2"/></svg></span>删除用户</button>
+        </div>
+        <div class="chat-messages" id="chatMessages"><div class="empty-chat"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--parch)" stroke-width="1.2" style="margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>留下你想对TA说的悄悄话吧～</div></div>
+        <div class="chat-input-area" id="chatInputArea" style="display:none;">
+          <div class="anon-toggle-row">
+            <input type="checkbox" id="anonToggle" class="anon-toggle">
+            <label for="anonToggle" class="anon-label"><span class="icon-anon" style="vertical-align:middle;margin-right:4px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5c4fa0" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>匿名发送 — 对方只看到 <strong>「匿名」</strong></label>
+          </div>
+          <div class="chat-input-row">
+            <input type="text" id="chatMessageInput" placeholder="输入消息，Enter 发送…">
+            <button class="send-btn" id="sendChatBtn"><span class="icon-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>发送</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 匿名信 -->
+  <div id="tab3" class="tab-content">
+    <div class="anon-layout">
+      <!-- 发送匿名信 -->
+      <div class="anon-send-card">
+        <div class="anon-send-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--anon-purple)" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          发送匿名信
+        </div>
+        <p class="anon-send-hint">对方只会看到消息内容，完全不知道发件人是谁</p>
+        <div class="anon-recipient-row">
+          <input type="text" id="anonToInput" class="anon-to-input" placeholder="收件人昵称…" autocomplete="off">
+          <button class="anon-search-btn" id="anonSearchBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            搜索
+          </button>
+        </div>
+        <div id="anonRecipientResult" class="anon-recipient-result" style="display:none;"></div>
+        <textarea id="anonMsgContent" class="anon-msg-textarea" rows="4" placeholder="写下你想匿名说的话…"></textarea>
+        <div class="anon-send-footer">
+          <span class="anon-privacy-note"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--anon-purple)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 发件人身份对收件人完全隐藏</span>
+          <button class="btn-anon-send" id="sendAnonBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            匿名发送
+          </button>
+        </div>
+      </div>
+      <!-- 收件箱 -->
+      <div class="anon-inbox-card">
+        <div class="anon-inbox-header">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--anon-purple)" stroke-width="2.2"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9"/><polyline points="2 6 12 12 22 6"/></svg> 我的匿名信箱</span>
+          <span class="anon-inbox-note">发件人对你完全匿名</span>
+        </div>
+        <div id="anonInboxList" class="anon-inbox-list"><div class="anon-inbox-empty">加载中…</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模态框 -->
+  <div id="searchUserModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>发起私信</h3><input type="text" id="searchUserInput" class="modal-search" placeholder="搜索用户昵称…"><div id="searchResults" class="user-list-modal"></div><div class="modal-buttons"><button id="closeSearchModal">关闭</button></div></div></div></div>
+  <div id="successModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><p id="successMessage"></p><div class="modal-buttons"><button id="closeSuccessModal">确定</button></div></div></div></div>
+  <div id="confirmModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><p id="confirmMessage"></p><div class="modal-buttons"><button id="confirmYes">确定</button><button id="confirmNo">取消</button></div></div></div></div>
+  <div id="userListModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>所有用户</h3><input type="text" id="searchUserListInput" class="modal-search" placeholder="搜索用户…"><div id="allUsersList" class="user-list-modal"></div><div class="modal-buttons"><button id="closeUserListBtn">关闭</button></div></div></div></div>
+  <div id="adminLoginModal" style="display:none;"><div class="modal-overlay"><div class="modal-container"><h3><span class="icon-lock"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>管理员登录</h3><input type="password" id="adminPasswordInput" class="modal-search" placeholder="请输入管理员密码"><div class="modal-buttons"><button id="confirmAdminLogin">登录</button><button id="cancelAdminLogin">取消</button></div></div></div></div>
+  <footer><span>💾 数据实时同步</span><span>留言墙所有人可见</span><span>私信仅双方可见</span></footer>
+</div>
+
+<script>
+  const SUPABASE_URL = "https://chfanuzhklzzawbcazjp.supabase.co";
+  const SUPABASE_ANON = "sb_publishable_7yvNBNHbSe-2cPbQ-yiXpA_z6dr1DYf";
+  const ADMIN_PWD = "reset2024";
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  let currentUser = "", isAdmin = false, currentContact = null;
+  const PAGE_SIZE = 10;
+  let isLoadingMore = false;
+
+  function esc(s) { return String(s || '').replace(/[&<>"]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m])); }
+  function fmt(ts) { const d = new Date(+ts); return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; }
+
+  function showMsg(msg) {
+    const m = document.getElementById('successModal');
+    document.getElementById('successMessage').textContent = msg;
+    m.style.display = 'flex';
+    document.getElementById('closeSuccessModal').onclick = () => m.style.display = 'none';
+    m.querySelector('.modal-overlay').onclick = e => { if (e.target === m.querySelector('.modal-overlay')) m.style.display = 'none'; };
+  }
+  function showConfirm(msg, cb) {
+    const m = document.getElementById('confirmModal');
+    document.getElementById('confirmMessage').textContent = msg;
+    m.style.display = 'flex';
+    document.getElementById('confirmYes').onclick = () => { m.style.display = 'none'; cb && cb(); };
+    document.getElementById('confirmNo').onclick = () => m.style.display = 'none';
+    m.querySelector('.modal-overlay').onclick = e => { if (e.target === m.querySelector('.modal-overlay')) m.style.display = 'none'; };
+  }
+  async function getAllUsers() {
+    const { data } = await sb.from('users').select('username');
+    return (data || []).map(u => u.username).filter(u => u !== currentUser);
+  }
+
+  // 公开留言相关
+  async function loadPublic(page = 1, append = false) {
+    const from = (page - 1) * PAGE_SIZE, to = from + PAGE_SIZE - 1;
+    try {
+      const { data: messages, error, count } = await sb.from('public_messages').select('*', { count: 'exact' }).order('timestamp', { ascending: false }).range(from, to);
+      if (error) throw error;
+      const { data: allReplies } = await sb.from('public_message_replies').select('*');
+      const byMsg = {}; (allReplies || []).forEach(r => { (byMsg[r.message_id] = byMsg[r.message_id] || []).push(r); });
+      const container = document.getElementById('publicList');
+      if (!append) container.innerHTML = '';
+      if (!messages.length && page === 1) {
+        container.innerHTML = '<div class="empty-sticky">还没有便利贴，写第一张吧！</div>';
+        document.getElementById('paginationControls').innerHTML = '';
+        return;
+      }
+      const frag = document.createDocumentFragment();
+      for (const msg of messages) {
+        const canDel = currentUser === msg.username || isAdmin;
+        const replies = byMsg[msg.id] || [];
+        const repliesHtml = replies.map(r => `<div class="reply-item"><div class="reply-header"><span class="reply-author">${esc(r.username)}</span><span class="reply-time">${fmt(r.timestamp)}</span></div><div class="reply-content">${esc(r.content)}</div>${(currentUser === r.username || isAdmin) ? `<button class="action-btn delete" onclick="deleteReply('${r.id}')" style="margin-top:4px;">删除</button>` : ''}</div>`).join('');
+        const div = document.createElement('div');
+        div.className = 'sticky-note';
+        div.dataset.id = msg.id;
+        div.innerHTML = `<div class="sticky-header"><span class="sticky-author">✏️ ${esc(msg.username)}</span><span class="sticky-time">${fmt(msg.timestamp)}</span></div><div class="sticky-content">${esc(msg.content)}</div><div class="sticky-footer"><button class="action-btn reply" onclick="toggleReply(${msg.id})">💬 回复${replies.length ? ` (${replies.length})` : ''}</button>${canDel ? `<button class="action-btn delete" onclick="deletePublic('${msg.id}')">🗑️ 撕掉</button>` : ''}</div><div class="replies-section" id="replies-${msg.id}"><div class="replies-list">${repliesHtml}</div><div class="reply-input-area" id="reply-input-${msg.id}"><input type="text" id="reply-content-${msg.id}" placeholder="写评论…"><button onclick="submitReply(${msg.id})">发送</button></div></div>`;
+        frag.appendChild(div);
+      }
+      container.appendChild(frag);
+      const pages = Math.ceil(count / PAGE_SIZE);
+      const ctrl = document.getElementById('paginationControls');
+      if (pages > 1 && page < pages) {
+        ctrl.innerHTML = `<button class="load-more-btn" id="loadMoreBtn">加载更多 (${page}/${pages})</button>`;
+        document.getElementById('loadMoreBtn').onclick = () => { if (!isLoadingMore) { isLoadingMore = true; loadPublic(page + 1, true).finally(() => isLoadingMore = false); } };
+      } else ctrl.innerHTML = '';
+    } catch (e) { console.error(e); showMsg('加载失败，请检查网络'); }
+  }
+  async function refreshPublic() { await loadPublic(1, false); }
+  window.toggleReply = id => { const el = document.getElementById(`reply-input-${id}`); if (el) el.style.display = el.style.display === 'flex' ? 'none' : 'flex'; };
+  window.submitReply = async id => {
+    if (!currentUser) { showMsg('请先设置昵称'); return; }
+    const input = document.getElementById(`reply-content-${id}`);
+    const content = input.value.trim();
+    if (!content) { showMsg('请输入评论内容'); return; }
+    const { error } = await sb.from('public_message_replies').insert({ message_id: id, username: currentUser, content, timestamp: Date.now() });
+    if (error) { showMsg('评论失败: ' + error.message); return; }
+    input.value = ''; await refreshPublic();
+  };
+  window.deleteReply = async id => { showConfirm('确定删除这条评论？', async () => { const { error } = await sb.from('public_message_replies').delete().eq('id', id); if (!error) await refreshPublic(); else showMsg('删除失败'); }); };
+  window.deletePublic = async id => { showConfirm('确定撕掉这张便利贴？', async () => { const { error } = await sb.from('public_messages').delete().eq('id', id); if (!error) { await refreshPublic(); showMsg('便利贴已撕掉！'); } else showMsg('删除失败'); }); };
+  async function postPublic() {
+    if (!currentUser) { showMsg('请先设置昵称'); return; }
+    const content = document.getElementById('publicContent').value.trim();
+    if (!content) { showMsg('请输入内容'); return; }
+    const { error } = await sb.from('public_messages').insert({ username: currentUser, content, timestamp: Date.now() });
+    if (!error) { document.getElementById('publicContent').value = ''; await refreshPublic(); showMsg('便利贴贴上啦！'); }
+    else showMsg('发布失败，请稍后重试');
+  }
+
+  // 私信相关
+  async function loadContacts() {
+    if (!currentUser) { document.getElementById('contactList').innerHTML = '<div class="empty-contact">请先设置昵称<br>再开始私信</div>'; return; }
+    const { data, error } = await sb.from('private_messages').select('fromUser,toUser').or(`fromUser.eq.${currentUser},toUser.eq.${currentUser}`);
+    if (error) return;
+    const seen = new Set(), contacts = [];
+    for (const m of data || []) {
+      const other = m.fromUser === currentUser ? m.toUser : m.fromUser;
+      if (!seen.has(other)) { seen.add(other); contacts.push(other); }
+    }
+    const container = document.getElementById('contactList');
+    if (!contacts.length) { container.innerHTML = '<div class="empty-contact">💬 暂无联系人<br>点击「新聊天」开始对话</div>'; return; }
+    const { data: lastMsgs } = await sb.from('private_messages').select('fromUser,toUser,content').or(`fromUser.eq.${currentUser},toUser.eq.${currentUser}`).order('timestamp', { ascending: false });
+    const lastBy = {};
+    for (const m of lastMsgs || []) { const other = m.fromUser === currentUser ? m.toUser : m.fromUser; if (!lastBy[other]) lastBy[other] = m.content; }
+    container.innerHTML = contacts.map(c => `<div class="contact-item${currentContact === c ? ' active' : ''}" onclick="selectContact('${esc(c)}')"><div class="contact-avatar">${esc(c.charAt(0).toUpperCase())}</div><div class="contact-info"><div class="contact-name">${esc(c)}</div><div class="contact-preview">${esc((lastBy[c] || '').slice(0, 30))}</div></div><div class="contact-dot"></div></div>`).join('');
+  }
+  async function getMessagesWith(user) {
+    const { data, error } = await sb.from('private_messages').select('*').or(`and(fromUser.eq.${currentUser},toUser.eq.${user}),and(fromUser.eq.${user},toUser.eq.${currentUser})`).order('timestamp', { ascending: true });
+    return error ? [] : data;
+  }
+  window.selectContact = async (contact) => {
+    if (!currentUser) return;
+    currentContact = contact;
+    const msgs = await getMessagesWith(contact);
+    const container = document.getElementById('chatMessages');
+    if (!msgs.length) {
+      container.innerHTML = '<div class="empty-chat"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--parch)" stroke-width="1.2" style="margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>留下你想对TA说的悄悄话吧～</div>';
+    } else {
+      container.innerHTML = msgs.map(m => {
+        const isSender = m.fromUser === currentUser;
+        const isAnonMsg = m.isAnon === true;
+        let displayName = "";
+        if (isSender) {
+          displayName = isAnonMsg ? "匿名" : "我";
+        } else {
+          displayName = isAnonMsg ? "匿名" : m.fromUser;
+        }
+        const canDelete = isSender || isAdmin;
+        return `<div class="chat-bubble ${isSender ? 'bubble-sent' : 'bubble-received'}">
+                  <div class="bubble-content">${esc(m.content)}</div>
+                  <div class="bubble-info">
+                    ${isAnonMsg ? '<span class="anon-tag">匿名发出</span>' : ''}
+                    <span>${displayName} · ${fmt(m.timestamp)}</span>
+                    ${canDelete ? `<button class="del-msg-btn" data-id="${m.id}">删除</button>` : ''}
+                  </div>
+                </div>`;
+      }).join('');
+      container.scrollTop = container.scrollHeight;
+      container.querySelectorAll('.del-msg-btn').forEach(btn => btn.onclick = () => deletePrivateMsg(btn.dataset.id));
+    }
+    document.getElementById('chatHeader').style.display = 'flex';
+    document.getElementById('chatInputArea').style.display = 'flex';
+    document.getElementById('chatAvatar').textContent = contact.charAt(0).toUpperCase();
+    document.getElementById('chatWithName').textContent = contact;
+    document.getElementById('deleteUserBtn').style.display = (isAdmin && contact !== currentUser) ? 'flex' : 'none';
+    document.querySelectorAll('.contact-item').forEach(el => el.classList.toggle('active', el.querySelector('.contact-name')?.textContent === contact));
+    document.getElementById('chatMessageInput').focus();
+  };
+  async function deletePrivateMsg(id) {
+    showConfirm('确定删除这条消息？', async () => {
+      const { error } = await sb.from('private_messages').delete().eq('id', id);
+      if (!error) { if (currentContact) await window.selectContact(currentContact); await loadContacts(); } else showMsg('删除失败');
+    });
+  }
+  window.sendToCurrent = async () => {
+    if (!currentUser || !currentContact) return;
+    const input = document.getElementById('chatMessageInput');
+    const content = input.value.trim();
+    if (!content) return;
+    const isAnon = document.getElementById('anonToggle').checked;
+    input.value = '';
+    const { error } = await sb.from('private_messages').insert({ fromUser: currentUser, toUser: currentContact, content, isAnon, timestamp: Date.now() });
+    if (!error) { await loadContacts(); await window.selectContact(currentContact); } else { showMsg('发送失败，请稍后重试'); input.value = content; }
+  };
+
+  // 用户管理
+  function applyUserUI() {
+    document.getElementById('userBadgeText').textContent = currentUser;
+    document.getElementById('nicknameInput').disabled = true;
+    document.getElementById('setNameBtn').disabled = true;
+    document.getElementById('nicknameInput').value = currentUser;
+  }
+  async function setUserName() {
+    const newName = document.getElementById('nicknameInput').value.trim();
+    if (!newName) { showMsg('请输入昵称'); return; }
+    const { data: ex } = await sb.from('users').select('username').eq('username', newName).maybeSingle();
+    if (ex) { showMsg('该昵称已被使用，请换一个'); return; }
+    const { error } = await sb.from('users').insert({ username: newName });
+    if (error) { showMsg('设置失败：' + error.message); return; }
+    currentUser = newName; localStorage.setItem('wall_user_saved', currentUser);
+    applyUserUI(); await loadContacts(); await refreshPublic();
+    showMsg(`昵称「${currentUser}」设置成功！`);
+  }
+  async function adminChangeName() {
+    if (!isAdmin) return;
+    const oldName = prompt('输入要修改的用户昵称：'); if (!oldName) return;
+    const newName = prompt('输入新昵称：'); if (!newName) return;
+    const { error } = await sb.rpc('admin_rename_user', { old_name: oldName, new_name: newName });
+    if (error) { showMsg('改名失败：' + error.message); return; }
+    showMsg(`"${oldName}" 已改名为 "${newName}"`);
+    if (currentUser === oldName) { currentUser = newName; localStorage.setItem('wall_user_saved', currentUser); applyUserUI(); }
+    await refreshPublic(); await loadContacts(); if (currentContact) await window.selectContact(currentContact);
+  }
+  async function adminDeleteUser(username) {
+    if (!isAdmin || username === currentUser) { showMsg('不能删除自己'); return; }
+    showConfirm(`确定删除用户「${username}」及其所有数据？`, async () => {
+      const { error } = await sb.rpc('admin_delete_user', { target_name: username });
+      if (error) { showMsg('删除失败：' + error.message); return; }
+      showMsg(`用户「${username}」已删除`);
+      if (currentContact === username) { currentContact = null; document.getElementById('chatHeader').style.display = 'none'; document.getElementById('chatInputArea').style.display = 'none'; document.getElementById('chatMessages').innerHTML = '<div class="empty-chat">留下你想对TA说的悄悄话吧～</div>'; }
+      await refreshPublic(); await loadContacts();
+      document.getElementById('userListModal').style.display = 'none';
+    });
+  }
+  window.adminDeleteUserFromList = adminDeleteUser;
+  async function openUserListModal() {
+    if (!isAdmin) return;
+    const users = await getAllUsers();
+    const render = list => { document.getElementById('allUsersList').innerHTML = list.length ? list.map(u => `<div class="user-item"><span>${esc(u)}</span><button class="user-delete-btn" onclick="adminDeleteUserFromList('${esc(u)}')">删除</button></div>`).join('') : '<div style="padding:24px;text-align:center;">暂无用户</div>'; };
+    render(users);
+    document.getElementById('userListModal').style.display = 'flex';
+    const si = document.getElementById('searchUserListInput');
+    si.value = ''; si.oninput = e => render(users.filter(u => u.toLowerCase().includes(e.target.value.toLowerCase())));
+  }
+  async function openSearchModal() {
+    if (!currentUser) { showMsg('请先设置昵称'); return; }
+    const users = await getAllUsers();
+    const render = list => { document.getElementById('searchResults').innerHTML = list.length ? list.map(u => `<div class="user-item"><span>${esc(u)}</span><button class="user-select-btn" onclick="startChatWith('${esc(u)}')">发消息</button></div>`).join('') : '<div style="padding:24px;text-align:center;">没有找到用户</div>'; };
+    render(users);
+    document.getElementById('searchUserModal').style.display = 'flex';
+    const si = document.getElementById('searchUserInput');
+    si.value = ''; si.oninput = e => render(users.filter(u => u.toLowerCase().includes(e.target.value.toLowerCase())));
+    setTimeout(() => si.focus(), 80);
+  }
+  window.startChatWith = async user => {
+    if (user === currentUser) { showMsg('不能和自己聊天'); return; }
+    document.getElementById('searchUserModal').style.display = 'none';
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-tab="tab2"]').classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab2').classList.add('active');
+    await loadContacts(); await window.selectContact(user);
+  };
+
+  // 匿名信
+  let anonRecipient = null;
+  async function searchAnonRecipient() {
+    const val = document.getElementById('anonToInput').value.trim();
+    if (!val) { showMsg('请输入收件人昵称'); return; }
+    if (val === currentUser) { showMsg('不能发给自己'); return; }
+    const { data } = await sb.from('users').select('username').eq('username', val).maybeSingle();
+    const box = document.getElementById('anonRecipientResult');
+    if (!data) { box.style.display = 'flex'; box.innerHTML = `<span style="color:var(--ruby);">找不到用户「${esc(val)}」</span>`; anonRecipient = null; return; }
+    anonRecipient = data.username;
+    box.style.display = 'flex';
+    box.innerHTML = `<span>✓ 收件人：<strong>${esc(anonRecipient)}</strong></span><button class="clear-recipient" onclick="clearAnonRecipient()">✕ 清除</button>`;
+    document.getElementById('anonToInput').value = '';
+  }
+  window.clearAnonRecipient = () => {
+    anonRecipient = null;
+    document.getElementById('anonRecipientResult').style.display = 'none';
+  };
+  async function sendAnonMessage() {
+    if (!currentUser) { showMsg('请先设置昵称'); return; }
+    if (!anonRecipient) { showMsg('请先搜索并选择收件人'); return; }
+    const content = document.getElementById('anonMsgContent').value.trim();
+    if (!content) { showMsg('请输入消息内容'); return; }
+    const { error } = await sb.from('anonymous_messages').insert({ toUser: anonRecipient, content, timestamp: Date.now() });
+    if (error) { showMsg('发送失败：' + error.message); return; }
+    document.getElementById('anonMsgContent').value = '';
+    anonRecipient = null;
+    document.getElementById('anonRecipientResult').style.display = 'none';
+    showMsg('匿名信已发送！对方不会知道是你。');
+  }
+  async function loadAnonInbox() {
+    if (!currentUser) { document.getElementById('anonInboxList').innerHTML = '<div class="anon-inbox-empty">请先设置昵称</div>'; return; }
+    const { data, error } = await sb.from('anonymous_messages').select('id,content,timestamp').eq('toUser', currentUser).order('timestamp', { ascending: false });
+    const list = document.getElementById('anonInboxList');
+    if (error || !data || !data.length) { list.innerHTML = '<div class="anon-inbox-empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--parch)" stroke-width="1.2" style="display:block;margin:0 auto 10px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>暂无匿名信</div>'; return; }
+    list.innerHTML = data.map(m => `<div class="anon-inbox-item"><div class="anon-inbox-meta"><span class="anon-from-badge">匿名</span><span class="anon-inbox-time">${fmt(m.timestamp)}</span></div><div class="anon-inbox-content">${esc(m.content)}</div>${isAdmin ? `<button class="anon-del-btn" onclick="deleteAnonMsg('${m.id}')">删除</button>` : ''}</div>`).join('');
+  }
+  window.deleteAnonMsg = async id => {
+    showConfirm('确定删除这条匿名信？', async () => {
+      const { error } = await sb.from('anonymous_messages').delete().eq('id', id);
+      if (!error) loadAnonInbox(); else showMsg('删除失败');
+    });
+  };
+  document.getElementById('anonSearchBtn').onclick = searchAnonRecipient;
+  document.getElementById('sendAnonBtn').onclick = sendAnonMessage;
+  document.getElementById('anonToInput').addEventListener('keypress', e => { if (e.key === 'Enter') searchAnonRecipient(); });
+
+  // 管理员认证
+  function openAdminLogin() { document.getElementById('adminLoginModal').style.display = 'flex'; document.getElementById('adminPasswordInput').value = ''; }
+  function verifyAdmin() {
+    if (document.getElementById('adminPasswordInput').value === ADMIN_PWD) {
+      isAdmin = true;
+      document.getElementById('adminBadge').style.display = 'flex';
+      document.getElementById('adminActions').style.display = 'flex';
+      document.getElementById('adminLoginModal').style.display = 'none';
+      showMsg('管理员模式已启用');
+      refreshPublic();
+      if (currentContact) window.selectContact(currentContact);
+    } else showMsg('密码错误');
+  }
+  function exitAdmin() {
+    isAdmin = false;
+    document.getElementById('adminBadge').style.display = 'none';
+    document.getElementById('adminActions').style.display = 'none';
+    document.getElementById('deleteUserBtn').style.display = 'none';
+    showMsg('已退出管理员模式');
+    refreshPublic();
+    if (currentContact) window.selectContact(currentContact);
+  }
+
+  // 事件绑定
+  document.getElementById('setNameBtn').onclick = setUserName;
+  document.getElementById('postPublicBtn').onclick = postPublic;
+  document.getElementById('sendChatBtn').onclick = window.sendToCurrent;
+  document.getElementById('newChatBtn').onclick = openSearchModal;
+  document.getElementById('closeSearchModal').onclick = () => document.getElementById('searchUserModal').style.display = 'none';
+  document.getElementById('closeUserListBtn').onclick = () => document.getElementById('userListModal').style.display = 'none';
+  document.getElementById('adminLoginBtn').onclick = () => { document.getElementById('userDropdown').classList.remove('show'); openAdminLogin(); };
+  document.getElementById('confirmAdminLogin').onclick = verifyAdmin;
+  document.getElementById('cancelAdminLogin').onclick = () => document.getElementById('adminLoginModal').style.display = 'none';
+  document.getElementById('exitAdminBtn').onclick = exitAdmin;
+  document.getElementById('resetNameBtn').onclick = adminChangeName;
+  document.getElementById('showUsersBtn').onclick = openUserListModal;
+  document.getElementById('deleteUserBtn').onclick = () => { if (currentContact) adminDeleteUser(currentContact); };
+  document.getElementById('anonToggle').addEventListener('change', e => {
+    if (currentContact) {
+      document.getElementById('chatWithName').textContent = e.target.checked ? '匿名' : currentContact;
+      document.getElementById('chatAvatar').textContent = e.target.checked ? '?' : currentContact.charAt(0).toUpperCase();
+    }
+  });
+  document.getElementById('chatMessageInput').addEventListener('keypress', e => { if (e.key === 'Enter') window.sendToCurrent(); });
+  document.getElementById('nicknameInput').addEventListener('keypress', e => { if (e.key === 'Enter') setUserName(); });
+  document.getElementById('adminPasswordInput').addEventListener('keypress', e => { if (e.key === 'Enter') verifyAdmin(); });
+  document.getElementById('userMenu').addEventListener('click', e => { e.stopPropagation(); document.getElementById('userDropdown').classList.toggle('show'); });
+  document.addEventListener('click', () => document.getElementById('userDropdown').classList.remove('show'));
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'tab2' && currentUser) loadContacts();
+      if (btn.dataset.tab === 'tab3') loadAnonInbox();
+    });
+  });
+
+  // 初始化
+  (async () => {
+    const saved = localStorage.getItem('wall_user_saved');
+    if (saved) {
+      const { data } = await sb.from('users').select('username').eq('username', saved).maybeSingle();
+      if (data) { currentUser = saved; applyUserUI(); } else localStorage.removeItem('wall_user_saved');
+    }
+    await refreshPublic();
+    if (currentUser) await loadContacts();
+
+    sb.channel('public-changes').on('postgres_changes', { event: '*', schema: 'public', table: 'public_messages' }, refreshPublic)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'public_message_replies' }, refreshPublic).subscribe();
+    sb.channel('private-changes').on('postgres_changes', { event: '*', schema: 'public', table: 'private_messages' }, async () => {
+      if (currentUser) { await loadContacts(); if (currentContact) await window.selectContact(currentContact); }
+    }).subscribe();
+    sb.channel('anon-changes').on('postgres_changes', { event: '*', schema: 'public', table: 'anonymous_messages' }, async () => {
+      if (currentUser && document.getElementById('tab3').classList.contains('active')) loadAnonInbox();
     }).subscribe();
   })();
 </script>
