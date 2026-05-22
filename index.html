@@ -1447,6 +1447,56 @@
       transition: color var(--ease);
     }
     .anon-del-btn:hover { color: var(--ruby); }
+    .anon-sent-card {
+      background: white;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--sh-sm);
+      border: 1.5px solid var(--parch);
+    }
+    .anon-sent-header {
+      background: var(--linen);
+      border-bottom: 1px solid var(--parch);
+      color: var(--mahog-mid);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.87rem;
+      font-weight: 500;
+    }
+    .anon-sent-item {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--ivory-dark);
+      position: relative;
+    }
+    .anon-sent-item:last-child { border-bottom: none; }
+    .anon-sent-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .anon-to-badge {
+      background: var(--linen);
+      color: var(--mahog-mid);
+      padding: 2px 10px;
+      border-radius: var(--r-pill);
+      font-size: 0.67rem;
+      font-weight: 500;
+      border: 1px solid var(--parch);
+    }
+    .anon-sent-time {
+      font-size: 0.62rem;
+      color: var(--mahog-faint);
+      margin-left: auto;
+    }
+    .anon-sent-content {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--ink-mid);
+      word-break: break-word;
+    }
 
     /* 动画 */
     @keyframes pin-bob {
@@ -1614,6 +1664,14 @@
           </button>
         </div>
       </div>
+      <!-- 已发送 -->
+      <div class="anon-sent-card">
+        <div class="anon-sent-header">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mahog-mid)" stroke-width="2.2" style="vertical-align:middle;margin-right:6px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>我发出的匿名信</span>
+          <span style="font-size:0.67rem;color:var(--mahog-faint);">收件人不知道是你</span>
+        </div>
+        <div id="anonSentList" class="anon-inbox-list"><div class="anon-inbox-empty">加载中…</div></div>
+      </div>
       <!-- 收件箱 -->
       <div class="anon-inbox-card">
         <div class="anon-inbox-header">
@@ -1675,7 +1733,18 @@
       const { data: allReplies } = await sb.from('public_message_replies').select('*');
       const byMsg = {}; (allReplies || []).forEach(r => { (byMsg[r.message_id] = byMsg[r.message_id] || []).push(r); });
       const container = document.getElementById('publicList');
-      if (!append) container.innerHTML = '';
+      // Save open reply drafts before wiping DOM
+      const savedReplies = {};
+      if (!append) {
+        container.querySelectorAll('.reply-input-area').forEach(el => {
+          if (el.style.display === 'flex') {
+            const id = el.id.replace('reply-input-', '');
+            const input = document.getElementById(`reply-content-${id}`);
+            savedReplies[id] = input ? input.value : '';
+          }
+        });
+        container.innerHTML = '';
+      }
       if (!messages.length && page === 1) {
         container.innerHTML = '<div class="empty-sticky">还没有便利贴，写第一张吧！</div>';
         document.getElementById('paginationControls').innerHTML = '';
@@ -1693,6 +1762,15 @@
         frag.appendChild(div);
       }
       container.appendChild(frag);
+      // Restore open reply drafts after re-render
+      for (const [id, draft] of Object.entries(savedReplies)) {
+        const area = document.getElementById(`reply-input-${id}`);
+        if (area) {
+          area.style.display = 'flex';
+          const input = document.getElementById(`reply-content-${id}`);
+          if (input) { input.value = draft; }
+        }
+      }
       const pages = Math.ceil(count / PAGE_SIZE);
       const ctrl = document.getElementById('paginationControls');
       if (pages > 1 && page < pages) {
@@ -1921,12 +1999,20 @@
     if (!anonRecipient) { showMsg('请先搜索并选择收件人'); return; }
     const content = document.getElementById('anonMsgContent').value.trim();
     if (!content) { showMsg('请输入消息内容'); return; }
-    const { error } = await sb.from('anonymous_messages').insert({ toUser: anonRecipient, content, timestamp: Date.now() });
+    const { error } = await sb.from('anonymous_messages').insert({ fromUser: currentUser, toUser: anonRecipient, content, timestamp: Date.now() });
     if (error) { showMsg('发送失败：' + error.message); return; }
     document.getElementById('anonMsgContent').value = '';
     anonRecipient = null;
     document.getElementById('anonRecipientResult').style.display = 'none';
+    await loadAnonSent();
     showMsg('匿名信已发送！对方不会知道是你。');
+  }
+  async function loadAnonSent() {
+    if (!currentUser) { document.getElementById('anonSentList').innerHTML = '<div class="anon-inbox-empty">请先设置昵称</div>'; return; }
+    const { data, error } = await sb.from('anonymous_messages').select('id,toUser,content,timestamp').eq('fromUser', currentUser).order('timestamp', { ascending: false });
+    const list = document.getElementById('anonSentList');
+    if (error || !data || !data.length) { list.innerHTML = '<div class="anon-inbox-empty">你还没发过匿名信</div>'; return; }
+    list.innerHTML = data.map(m => `<div class="anon-sent-item"><div class="anon-sent-meta"><span class="anon-to-badge">发给：${esc(m.toUser)}</span><span class="anon-sent-time">${fmt(m.timestamp)}</span></div><div class="anon-sent-content">${esc(m.content)}</div></div>`).join('');
   }
   async function loadAnonInbox() {
     if (!currentUser) { document.getElementById('anonInboxList').innerHTML = '<div class="anon-inbox-empty">请先设置昵称</div>'; return; }
@@ -2000,7 +2086,7 @@
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById(btn.dataset.tab).classList.add('active');
       if (btn.dataset.tab === 'tab2' && currentUser) loadContacts();
-      if (btn.dataset.tab === 'tab3') loadAnonInbox();
+      if (btn.dataset.tab === 'tab3') { loadAnonSent(); loadAnonInbox(); }
     });
   });
 
