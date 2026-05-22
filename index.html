@@ -61,7 +61,111 @@
       min-height: 100vh;
       color: var(--ink);
       overflow-x: hidden;
+      transition: background 0.45s ease;
     }
+
+    /* ── 匿名信 dark mode ── */
+    body.anon-mode { background: #12101c; color: rgba(255,255,255,0.82); }
+
+    body.anon-mode::before {
+      background:
+        radial-gradient(ellipse 70% 55% at 15% 10%, rgba(92,79,160,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 65% at 85% 90%, rgba(61,53,128,0.26) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='19' y='19' width='2' height='2' rx='1' fill='%236b5fa0' fill-opacity='0.14'/%3E%3C/svg%3E");
+      background-size: auto, auto, 40px 40px;
+    }
+
+    body.anon-mode .header-card {
+      background: linear-gradient(135deg, rgba(30,24,52,0.95), rgba(18,14,34,0.98));
+      box-shadow: var(--sh-md), inset 0 1px 0 rgba(92,79,160,0.18);
+    }
+
+    body.anon-mode .nickname-card {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(92,79,160,0.18);
+    }
+    body.anon-mode .nickname-card input {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(92,79,160,0.2);
+      color: rgba(255,255,255,0.82);
+    }
+    body.anon-mode .nickname-card input::placeholder { color: rgba(255,255,255,0.3); }
+    body.anon-mode #adminBadge,
+    body.anon-mode .admin-actions button { color: rgba(255,255,255,0.55); border-color: rgba(92,79,160,0.3); }
+
+    body.anon-mode .tab-nav {
+      background: rgba(14,11,22,0.88);
+      border-top-color: rgba(92,79,160,0.2);
+    }
+    body.anon-mode .tab-btn { color: rgba(255,255,255,0.3); }
+    body.anon-mode .tab-btn.active { color: #a594e8; }
+    body.anon-mode .tab-btn.active .tab-icon-wrap { background: rgba(92,79,160,0.2); }
+
+    body.anon-mode footer { color: rgba(255,255,255,0.2); }
+
+    /* ── 匿名信 cards dark ── */
+    body.anon-mode .anon-send-card {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(92,79,160,0.2);
+    }
+    body.anon-mode .anon-send-header { color: #a594e8; }
+    body.anon-mode .anon-send-hint { color: rgba(255,255,255,0.35); }
+    body.anon-mode .anon-to-input {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(92,79,160,0.25);
+      color: rgba(255,255,255,0.85);
+    }
+    body.anon-mode .anon-to-input::placeholder { color: rgba(255,255,255,0.28); }
+    body.anon-mode .anon-msg-textarea {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(92,79,160,0.25);
+      color: rgba(255,255,255,0.85);
+    }
+    body.anon-mode .anon-msg-textarea::placeholder { color: rgba(255,255,255,0.28); }
+    body.anon-mode .anon-privacy-note { color: #a594e8; }
+    body.anon-mode .anon-recipient-result {
+      background: rgba(92,79,160,0.18);
+      color: #c4b8f0;
+    }
+
+    body.anon-mode .anon-sent-card {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
+    }
+    body.anon-mode .anon-sent-header {
+      background: rgba(255,255,255,0.04);
+      border-bottom-color: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.55);
+    }
+    body.anon-mode .anon-sent-content { color: rgba(255,255,255,0.75); }
+    body.anon-mode .anon-sent-time { color: rgba(255,255,255,0.3); }
+    body.anon-mode .anon-to-badge {
+      background: rgba(92,79,160,0.2);
+      color: #c4b8f0;
+      border-color: rgba(92,79,160,0.3);
+    }
+
+    body.anon-mode .anon-inbox-card {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(92,79,160,0.2);
+    }
+    body.anon-mode .anon-inbox-item {
+      border-bottom-color: rgba(255,255,255,0.06);
+    }
+    body.anon-mode .anon-inbox-content { color: rgba(255,255,255,0.78); }
+    body.anon-mode .anon-inbox-time { color: rgba(255,255,255,0.3); }
+    body.anon-mode .anon-inbox-empty,
+    body.anon-mode .anon-inbox-empty { color: rgba(255,255,255,0.25); }
+
+    body.anon-mode .anon-user-dropdown {
+      background: #1e1830;
+      border-color: rgba(92,79,160,0.3);
+    }
+    body.anon-mode .anon-dropdown-item {
+      color: rgba(255,255,255,0.75);
+      border-bottom-color: rgba(255,255,255,0.06);
+    }
+    body.anon-mode .anon-dropdown-item:hover { background: rgba(92,79,160,0.2); }
 
     body::before {
       content: '';
@@ -554,9 +658,9 @@
 
     .sticky-author {
       background: var(--linen);
-      padding: 3px 12px;
+      padding: 3px 10px;
       border-radius: var(--r-pill);
-      font-size: 0.71rem;
+      font-size: 0.65rem;
       font-weight: 500;
       color: var(--forest);
       border: 1px solid var(--parch);
@@ -660,17 +764,20 @@
       display: none;
       gap: 8px;
       align-items: center;
+      width: 100%;
     }
 
     .reply-input-area input {
       flex: 1;
-      padding: 8px 14px;
+      min-width: 0;
+      padding: 10px 14px;
       border-radius: var(--r-pill);
       border: 1.5px solid var(--parch);
-      font-size: 0.8rem;
+      font-size: 16px;
       font-family: inherit;
       background: var(--linen);
       transition: border-color var(--ease);
+      -webkit-appearance: none;
     }
 
     .reply-input-area input:focus {
@@ -683,10 +790,13 @@
       background: var(--forest);
       border: none;
       color: white;
-      padding: 8px 18px;
+      padding: 10px 16px;
       border-radius: var(--r-pill);
       font-size: 0.75rem;
       cursor: pointer;
+      flex-shrink: 0;
+      -webkit-appearance: none;
+      font-family: inherit;
     }
 
     .pagination-container {
@@ -1012,60 +1122,6 @@
       gap: 10px;
     }
 
-    .anon-toggle-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      background: var(--linen);
-      border-radius: var(--r-md);
-      border: 1px solid var(--parch);
-    }
-
-    .anon-toggle {
-      appearance: none;
-      width: 38px;
-      height: 21px;
-      background: var(--parch);
-      border-radius: 20px;
-      cursor: pointer;
-      position: relative;
-      transition: background var(--ease);
-      flex-shrink: 0;
-    }
-
-    .anon-toggle:checked {
-      background: var(--anon-purple);
-    }
-
-    .anon-toggle::after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 15px;
-      height: 15px;
-      background: white;
-      border-radius: 50%;
-      transition: left var(--ease);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
-    }
-
-    .anon-toggle:checked::after {
-      left: 20px;
-    }
-
-    .anon-label {
-      font-size: 0.74rem;
-      color: var(--mahog-lt);
-      cursor: pointer;
-      user-select: none;
-      flex: 1;
-    }
-
-    .anon-label strong {
-      color: var(--anon-purple);
-    }
 
     .chat-input-row {
       display: flex;
@@ -1335,6 +1391,58 @@
       transition: background var(--ease);
     }
     .anon-search-btn:hover { background: #4a3d8a; }
+    .anon-recipient-wrap {
+      position: relative;
+      flex: 1;
+    }
+    .anon-user-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: var(--r-md);
+      box-shadow: var(--sh-md);
+      border: 1px solid var(--parch);
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 50;
+      display: none;
+    }
+    .anon-user-dropdown.show { display: block; animation: dropFade 0.12s ease; }
+    .anon-dropdown-item {
+      padding: 11px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--ivory-dark);
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      transition: background var(--ease);
+    }
+    .anon-dropdown-item:last-child { border-bottom: none; }
+    .anon-dropdown-item:hover, .anon-dropdown-item:active { background: var(--anon-light); color: var(--anon-purple); }
+    .anon-dropdown-avatar {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--anon-light), #d4cef0);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--anon-purple);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      font-family: 'Playfair Display', serif;
+    }
+    .anon-dropdown-empty {
+      padding: 16px 14px;
+      font-size: 0.8rem;
+      color: var(--mahog-faint);
+      text-align: center;
+    }
     .anon-recipient-result {
       background: var(--anon-light);
       border-radius: var(--r-md);
@@ -1630,7 +1738,7 @@
   <!-- 昵称卡片 -->
   <div class="nickname-card">
     <div class="nickname-group">
-      <input type="text" id="nicknameInput" placeholder="输入你的昵称，开始留言…">
+      <input type="text" id="nicknameInput" placeholder="输入昵称">
       <button class="btn-primary" id="setNameBtn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
         设置昵称
@@ -1702,10 +1810,6 @@
         </div>
         <div class="chat-messages" id="chatMessages"><div class="empty-chat"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="var(--parch)" stroke-width="1.2" style="margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>留下你想对TA说的悄悄话吧～</div></div>
         <div class="chat-input-area" id="chatInputArea" style="display:none;">
-          <div class="anon-toggle-row">
-            <input type="checkbox" id="anonToggle" class="anon-toggle">
-            <label for="anonToggle" class="anon-label"><span class="icon-anon" style="vertical-align:middle;margin-right:4px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5c4fa0" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>匿名发送 — 对方只看到 <strong>「匿名」</strong></label>
-          </div>
           <div class="chat-input-row">
             <input type="text" id="chatMessageInput" placeholder="输入消息，Enter 发送…">
             <button class="send-btn" id="sendChatBtn"><span class="icon-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>发送</button>
@@ -1726,10 +1830,13 @@
         </div>
         <p class="anon-send-hint">对方只会看到消息内容，完全不知道发件人是谁</p>
         <div class="anon-recipient-row">
-          <input type="text" id="anonToInput" class="anon-to-input" placeholder="收件人昵称…" autocomplete="off">
+          <div class="anon-recipient-wrap">
+            <input type="text" id="anonToInput" class="anon-to-input" placeholder="收件人昵称… 或直接选择" autocomplete="off" style="width:100%;">
+            <div id="anonUserDropdown" class="anon-user-dropdown"></div>
+          </div>
           <button class="anon-search-btn" id="anonSearchBtn">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            搜索
+            确认
           </button>
         </div>
         <div id="anonRecipientResult" class="anon-recipient-result" style="display:none;"></div>
@@ -1826,7 +1933,7 @@
         const div = document.createElement('div');
         div.className = 'sticky-note';
         div.dataset.id = msg.id;
-        div.innerHTML = `<div class="sticky-header"><span class="sticky-author">✏️ ${esc(msg.username)}</span><span class="sticky-time">${fmt(msg.timestamp)}</span></div><div class="sticky-content">${esc(msg.content)}</div><div class="sticky-footer"><button class="action-btn reply" onclick="toggleReply(${msg.id})">💬 回复${replies.length ? ` (${replies.length})` : ''}</button>${canDel ? `<button class="action-btn delete" onclick="deletePublic('${msg.id}')">🗑️ 撕掉</button>` : ''}</div><div class="replies-section" id="replies-${msg.id}"><div class="replies-list">${repliesHtml}</div><div class="reply-input-area" id="reply-input-${msg.id}"><input type="text" id="reply-content-${msg.id}" placeholder="写评论…"><button onclick="submitReply(${msg.id})">发送</button></div></div>`;
+        div.innerHTML = `<div class="sticky-header"><span class="sticky-author">${esc(msg.username)}</span><span class="sticky-time">${fmt(msg.timestamp)}</span></div><div class="sticky-content">${esc(msg.content)}</div><div class="sticky-footer"><button class="action-btn reply" onclick="toggleReply(${msg.id})">💬 回复${replies.length ? ` (${replies.length})` : ''}</button>${canDel ? `<button class="action-btn delete" onclick="deletePublic('${msg.id}')">🗑️ 撕掉</button>` : ''}</div><div class="replies-section" id="replies-${msg.id}"><div class="replies-list">${repliesHtml}</div><div class="reply-input-area" id="reply-input-${msg.id}"><input type="text" id="reply-content-${msg.id}" placeholder="写评论…"><button onclick="submitReply(${msg.id})">发送</button></div></div>`;
         frag.appendChild(div);
       }
       container.appendChild(frag);
@@ -1961,7 +2068,7 @@
     const input = document.getElementById('chatMessageInput');
     const content = input.value.trim();
     if (!content) return;
-    const isAnon = document.getElementById('anonToggle').checked;
+    const isAnon = false;
     input.value = '';
     const { error } = await sb.from('private_messages').insert({ fromUser: currentUser, toUser: currentContact, content, isAnon, timestamp: Date.now() });
     if (!error) { await loadContacts(); await window.selectContact(currentContact); } else { showMsg('发送失败，请稍后重试'); input.value = content; }
@@ -2037,7 +2144,7 @@
   };
 
   // 匿名信
-  let anonRecipient = null;
+  let anonRecipient = null, anonAllUsers = [];
   async function searchAnonRecipient() {
     const val = document.getElementById('anonToInput').value.trim();
     if (!val) { showMsg('请输入收件人昵称'); return; }
@@ -2089,6 +2196,54 @@
       if (!error) loadAnonInbox(); else showMsg('删除失败');
     });
   };
+  // Anon recipient dropdown
+  function renderAnonDropdown(query) {
+    const dropdown = document.getElementById('anonUserDropdown');
+    const filtered = anonAllUsers.filter(u => !query || u.toLowerCase().includes(query.toLowerCase()));
+    if (!filtered.length) {
+      dropdown.innerHTML = `<div class="anon-dropdown-empty">找不到用户「${esc(query)}」</div>`;
+    } else {
+      dropdown.innerHTML = filtered.map(u =>
+        `<div class="anon-dropdown-item" data-name="${esc(u)}">
+          <div class="anon-dropdown-avatar">${esc(u.charAt(0).toUpperCase())}</div>
+          <span>${esc(u)}</span>
+        </div>`
+      ).join('');
+      dropdown.querySelectorAll('.anon-dropdown-item').forEach(item => {
+        item.addEventListener('mousedown', e => {
+          e.preventDefault();
+          selectAnonDropdownUser(item.dataset.name);
+        });
+      });
+    }
+    dropdown.classList.add('show');
+  }
+  function selectAnonDropdownUser(name) {
+    anonRecipient = name;
+    document.getElementById('anonToInput').value = '';
+    document.getElementById('anonUserDropdown').classList.remove('show');
+    const box = document.getElementById('anonRecipientResult');
+    box.style.display = 'flex';
+    box.innerHTML = `<span>✓ 收件人：<strong>${esc(anonRecipient)}</strong></span><button class="clear-recipient" onclick="clearAnonRecipient()">✕ 清除</button>`;
+  }
+  async function initAnonUserList() {
+    if (!currentUser) return;
+    const { data } = await sb.from('users').select('username');
+    anonAllUsers = (data || []).map(u => u.username).filter(u => u !== currentUser);
+  }
+  document.getElementById('anonToInput').addEventListener('focus', async () => {
+    if (!currentUser) return;
+    if (!anonAllUsers.length) await initAnonUserList();
+    renderAnonDropdown(document.getElementById('anonToInput').value.trim());
+  });
+  document.getElementById('anonToInput').addEventListener('input', e => {
+    if (!currentUser) return;
+    renderAnonDropdown(e.target.value.trim());
+  });
+  document.getElementById('anonToInput').addEventListener('blur', () => {
+    setTimeout(() => document.getElementById('anonUserDropdown').classList.remove('show'), 150);
+  });
+
   document.getElementById('anonSearchBtn').onclick = searchAnonRecipient;
   document.getElementById('sendAnonBtn').onclick = sendAnonMessage;
   document.getElementById('anonToInput').addEventListener('keypress', e => { if (e.key === 'Enter') searchAnonRecipient(); });
@@ -2141,12 +2296,6 @@
   document.getElementById('resetNameBtn').onclick = adminChangeName;
   document.getElementById('showUsersBtn').onclick = openUserListModal;
   document.getElementById('deleteUserBtn').onclick = () => { if (currentContact) adminDeleteUser(currentContact); };
-  document.getElementById('anonToggle').addEventListener('change', e => {
-    if (currentContact) {
-      document.getElementById('chatWithName').textContent = e.target.checked ? '匿名' : currentContact;
-      document.getElementById('chatAvatar').textContent = e.target.checked ? '?' : currentContact.charAt(0).toUpperCase();
-    }
-  });
   document.getElementById('chatMessageInput').addEventListener('keypress', e => { if (e.key === 'Enter') window.sendToCurrent(); });
   document.getElementById('nicknameInput').addEventListener('keypress', e => { if (e.key === 'Enter') setUserName(); });
   document.getElementById('adminPasswordInput').addEventListener('keypress', e => { if (e.key === 'Enter') verifyAdmin(); });
@@ -2159,7 +2308,8 @@
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById(btn.dataset.tab).classList.add('active');
       if (btn.dataset.tab === 'tab2' && currentUser) loadContacts();
-      if (btn.dataset.tab === 'tab3') { loadAnonSent(); loadAnonInbox(); }
+      if (btn.dataset.tab === 'tab3') { loadAnonSent(); loadAnonInbox(); initAnonUserList(); }
+      document.body.classList.toggle('anon-mode', btn.dataset.tab === 'tab3');
     });
   });
 
