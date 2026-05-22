@@ -80,16 +80,18 @@
       z-index: 1;
       max-width: 980px;
       margin: 0 auto;
-      padding: 20px 16px calc(28px + env(safe-area-inset-bottom, 0px));
+      padding: 16px 14px calc(90px + env(safe-area-inset-bottom, 0px));
     }
 
     /* 头部 */
     .header-card {
-      background: var(--forest);
+      background: linear-gradient(135deg, rgba(45,74,39,0.92), rgba(35,58,30,0.96));
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
       border-radius: var(--r-xl);
-      padding: 22px 28px;
-      margin-bottom: 18px;
-      box-shadow: var(--sh-md), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      box-shadow: var(--sh-md), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -237,12 +239,14 @@
 
     /* 昵称卡片 */
     .nickname-card {
-      background: var(--white);
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
       border-radius: var(--r-lg);
-      padding: 18px 22px;
-      margin-bottom: 18px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
       box-shadow: var(--sh-sm);
-      border: 1px solid var(--ivory-dark);
+      border: 1px solid rgba(192,160,128,0.2);
     }
 
     .nickname-group {
@@ -351,45 +355,67 @@
       font-weight: 500;
     }
 
-    /* 标签页 */
+    /* ── Bottom tab bar (iOS style) ── */
     .tab-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       display: flex;
       gap: 0;
-      margin-bottom: 18px;
-      background: var(--white);
-      border-radius: var(--r-lg);
-      padding: 5px;
-      box-shadow: var(--sh-xs);
-      border: 1px solid var(--ivory-dark);
+      padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+      background: rgba(250, 247, 240, 0.72);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-top: 1px solid rgba(192, 160, 128, 0.22);
+      box-shadow: 0 -4px 24px rgba(58, 37, 16, 0.08);
     }
 
     .tab-btn {
       flex: 1;
-      padding: 11px 14px;
+      padding: 8px 6px 4px;
       border: none;
       background: transparent;
       border-radius: var(--r-md);
-      font-size: 0.87rem;
+      font-size: 0.68rem;
       font-weight: 500;
       cursor: pointer;
       color: var(--mahog-faint);
       font-family: inherit;
-      transition: all var(--ease);
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tab-btn svg { transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+    .tab-btn.active {
+      color: var(--forest);
+    }
+
+    .tab-btn.active svg {
+      transform: scale(1.18);
+    }
+
+    .tab-btn .tab-icon-wrap {
+      position: relative;
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      border-radius: 8px;
+      transition: background 0.15s ease;
     }
 
-    .tab-btn:hover:not(.active) {
-      background: var(--linen);
-      color: var(--mahog-lt);
-    }
-
-    .tab-btn.active {
-      background: var(--forest);
-      color: white;
-      box-shadow: 0 2px 10px var(--forest-glow);
+    .tab-btn.active .tab-icon-wrap {
+      background: rgba(45, 74, 39, 0.12);
     }
 
     .tab-content {
@@ -398,7 +424,7 @@
 
     .tab-content.active {
       display: block;
-      animation: fadeUp 0.18s ease;
+      animation: fadeUp 0.22s cubic-bezier(0.34, 1.2, 0.64, 1);
     }
 
     @keyframes fadeUp {
@@ -1085,41 +1111,48 @@
       background: var(--forest-mid);
     }
 
-    /* 模态框 */
+    /* 模态框 — bottom sheet on mobile */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(18, 13, 8, 0.58);
-      backdrop-filter: blur(6px);
+      background: rgba(18, 13, 8, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 1000;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
-      padding: 20px;
     }
 
     .modal-container {
-      background: white;
-      border-radius: var(--r-xl);
-      padding: 26px;
+      background: rgba(250, 247, 240, 0.96);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-radius: var(--r-xl) var(--r-xl) 0 0;
+      padding: 12px 22px calc(22px + env(safe-area-inset-bottom, 0px));
       width: 100%;
-      max-width: 400px;
-      max-height: 85vh;
+      max-width: 560px;
+      max-height: 88vh;
       overflow-y: auto;
-      box-shadow: var(--sh-lg);
-      border: 1px solid var(--parch);
-      animation: modalIn 0.18s cubic-bezier(0.34, 1.4, 0.64, 1);
+      box-shadow: 0 -8px 40px rgba(58, 37, 16, 0.18);
+      border: 1px solid rgba(192, 160, 128, 0.2);
+      border-bottom: none;
+      animation: sheetUp 0.32s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
-    @keyframes modalIn {
-      from {
-        opacity: 0;
-        transform: scale(0.93);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .modal-container::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 4px;
+      background: var(--parch);
+      border-radius: 2px;
+      margin: 0 auto 18px;
+    }
+
+    @keyframes sheetUp {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
     }
 
     .modal-container h3 {
@@ -1498,6 +1531,51 @@
       word-break: break-word;
     }
 
+    /* ── Mobile / iOS optimisations ── */
+    @media (max-width: 768px) {
+      .header-card { padding: 13px 16px; }
+      .logo-title { font-size: 1.25rem; }
+      .user-badge { padding: 8px 14px; font-size: 0.78rem; }
+
+      /* Larger tap targets */
+      .btn-primary, .send-btn, .btn-anon-send, .anon-search-btn {
+        min-height: 48px;
+        padding: 13px 22px;
+      }
+      .action-btn { min-height: 40px; padding: 8px 14px; }
+      .new-chat-btn { min-height: 40px; padding: 8px 16px; }
+
+      /* Full-screen chat on mobile */
+      .private-layout {
+        flex-direction: column;
+        min-height: unset;
+        gap: 12px;
+      }
+      .contact-list {
+        width: 100% !important;
+        max-height: 200px;
+        border-radius: var(--r-lg);
+      }
+      .chat-area { min-height: 420px; border-radius: var(--r-lg); }
+      .chat-messages { padding: 16px 12px; }
+
+      /* Reply inputs */
+      .reply-input-area input { font-size: 16px; } /* prevent iOS zoom */
+      .chat-input-row input, .nickname-group input,
+      .modal-search, .anon-to-input { font-size: 16px; }
+
+      /* Sticky notes */
+      .whiteboard { padding: 16px 14px; border-radius: var(--r-lg); }
+      .compose-area textarea { font-size: 16px; }
+
+      /* Anon layout */
+      .anon-send-card { padding: 18px 16px; }
+      .anon-msg-textarea { font-size: 16px; }
+
+      /* Modal fills more screen */
+      .modal-container { max-height: 92vh; }
+    }
+
     /* 动画 */
     @keyframes pin-bob {
       0%, 100% { transform: translateY(0); }
@@ -1572,15 +1650,15 @@
   <!-- 标签页 -->
   <div class="tab-nav">
     <button class="tab-btn active" data-tab="tab1">
-      <span class="icon-pin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V17z"/></svg></span>
+      <span class="tab-icon-wrap icon-pin"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V17z"/></svg></span>
       留言墙
     </button>
     <button class="tab-btn" data-tab="tab2">
-      <span class="icon-msg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      <span class="tab-icon-wrap icon-msg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
       私信
     </button>
     <button class="tab-btn" data-tab="tab3">
-      <span class="icon-lock"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      <span class="tab-icon-wrap icon-lock"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
       匿名信
     </button>
   </div>
