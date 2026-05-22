@@ -1901,9 +1901,11 @@
   async function searchAnonRecipient() {
     const val = document.getElementById('anonToInput').value.trim();
     if (!val) { showMsg('请输入收件人昵称'); return; }
+    if (!currentUser) { showMsg('请先设置昵称再搜索'); return; }
     if (val === currentUser) { showMsg('不能发给自己'); return; }
-    const { data } = await sb.from('users').select('username').eq('username', val).maybeSingle();
+    const { data, error } = await sb.from('users').select('username').eq('username', val).maybeSingle();
     const box = document.getElementById('anonRecipientResult');
+    if (error) { showMsg('搜索失败：' + error.message); return; }
     if (!data) { box.style.display = 'flex'; box.innerHTML = `<span style="color:var(--ruby);">找不到用户「${esc(val)}」</span>`; anonRecipient = null; return; }
     anonRecipient = data.username;
     box.style.display = 'flex';
