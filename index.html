@@ -1700,6 +1700,7 @@
   let currentUser = "", isAdmin = false, currentContact = null;
   const PAGE_SIZE = 10;
   let isLoadingMore = false;
+  let replyInputFocused = false, refreshPending = false;
 
   function esc(s) { return String(s || '').replace(/[&<>"]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m])); }
   function fmt(ts) { const d = new Date(+ts); return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; }
@@ -1733,18 +1734,7 @@
       const { data: allReplies } = await sb.from('public_message_replies').select('*');
       const byMsg = {}; (allReplies || []).forEach(r => { (byMsg[r.message_id] = byMsg[r.message_id] || []).push(r); });
       const container = document.getElementById('publicList');
-      // Save open reply drafts before wiping DOM
-      const savedReplies = {};
-      if (!append) {
-        container.querySelectorAll('.reply-input-area').forEach(el => {
-          if (el.style.display === 'flex') {
-            const id = el.id.replace('reply-input-', '');
-            const input = document.getElementById(`reply-content-${id}`);
-            savedReplies[id] = input ? input.value : '';
-          }
-        });
-        container.innerHTML = '';
-      }
+      if (!append) container.innerHTML = '';
       if (!messages.length && page === 1) {
         container.innerHTML = '<div class="empty-sticky">还没有便利贴，写第一张吧！</div>';
         document.getElementById('paginationControls').innerHTML = '';
@@ -1762,15 +1752,6 @@
         frag.appendChild(div);
       }
       container.appendChild(frag);
-      // Restore open reply drafts after re-render
-      for (const [id, draft] of Object.entries(savedReplies)) {
-        const area = document.getElementById(`reply-input-${id}`);
-        if (area) {
-          area.style.display = 'flex';
-          const input = document.getElementById(`reply-content-${id}`);
-          if (input) { input.value = draft; }
-        }
-      }
       const pages = Math.ceil(count / PAGE_SIZE);
       const ctrl = document.getElementById('paginationControls');
       if (pages > 1 && page < pages) {
@@ -1779,7 +1760,10 @@
       } else ctrl.innerHTML = '';
     } catch (e) { console.error(e); showMsg('加载失败，请检查网络'); }
   }
-  async function refreshPublic() { await loadPublic(1, false); }
+  async function refreshPublic() {
+    if (replyInputFocused) { refreshPending = true; return; }
+    await loadPublic(1, false);
+  }
   window.toggleReply = id => { const el = document.getElementById(`reply-input-${id}`); if (el) el.style.display = el.style.display === 'flex' ? 'none' : 'flex'; };
   window.submitReply = async id => {
     if (!currentUser) { showMsg('请先设置昵称'); return; }
@@ -2055,6 +2039,17 @@
   }
 
   // 事件绑定
+  // Freeze board refresh while user is typing a reply
+  document.getElementById('publicList').addEventListener('focusin', e => {
+    if (e.target.closest('.reply-input-area')) replyInputFocused = true;
+  });
+  document.getElementById('publicList').addEventListener('focusout', e => {
+    if (e.target.closest('.reply-input-area')) {
+      replyInputFocused = false;
+      if (refreshPending) { refreshPending = false; refreshPublic(); }
+    }
+  });
+
   document.getElementById('setNameBtn').onclick = setUserName;
   document.getElementById('postPublicBtn').onclick = postPublic;
   document.getElementById('sendChatBtn').onclick = window.sendToCurrent;
